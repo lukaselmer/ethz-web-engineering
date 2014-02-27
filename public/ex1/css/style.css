@@ -38,18 +38,36 @@ h1 {
   border-radius: 10px;
   background: #febc4b;
   margin: 0 10px 0 2px;
+  padding: 10px;
   width: 150px; }
+  .left-nav div {
+    text-align: center;
+    background: #ebebeb;
+    font-weight: bold;
+    padding: 1px 0;
+    margin: 2px 0 3px 0; }
   .left-nav a {
-    display: block; }
+    display: block;
+    padding: 3px 0 1px 0;
+    border-bottom: 3px solid #ebebeb; }
 
 .main-content {
   background: #febc4b;
   border-radius: 10px;
   margin-right: 10px;
+  padding: 10px;
   width: 200px; }
+  .main-content > div {
+    background: #ebebeb;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px; }
 
 .right-content {
   border-radius: 10px;
   background: #febc4b;
   margin-right: 2px;
+  padding: 10px;
   width: 200px; }
+  .right-content h3 {
+    font-weight: bold; }
