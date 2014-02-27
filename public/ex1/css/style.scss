@@ -1,0 +1,91 @@
+$textColor: #0b0b0b;
+$linkColor: #999;
+$primaryColor: #febc4b;
+$backgroundColor: #ebebeb;
+$socialLinksColor: #335ed7;
+$footerTextColor: #727272;
+$borderRadius: 10px;
+
+body, input, button, select, textarea {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: $textColor;
+}
+
+body {
+  background: $backgroundColor;
+}
+
+a {
+  color: $linkColor;
+  text-decoration: none;
+}
+
+.fl {
+  float: left;
+}
+
+.clearer {
+  clear: both;
+}
+
+h1 {
+  text-align: center;
+  font-size: 200%;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.top-nav {
+  text-align: center;
+  margin: 10px 0;
+  ul {
+    display: inline-block;
+    li {
+      float: left;
+      display: block;
+      padding: 5px 5px;
+      background: $primaryColor;
+      border: 2px solid #d9d9d9;
+      margin: 0 2px;
+    }
+  }
+}
+
+.left-nav {
+  border-radius: $borderRadius;
+  background: $primaryColor;
+
+  margin: 0 10px 0 2px;
+
+  width: 150px;
+  div {
+
+  }
+  a {
+    display: block;
+  }
+}
+
+.main-content {
+  background: $primaryColor;
+  border-radius: $borderRadius;
+
+  margin-right: 10px;
+
+  width: 200px;
+}
+
+.right-content {
+  border-radius: $borderRadius;
+  background: $primaryColor;
+
+  margin-right: 2px;
+
+  width: 200px;
+}
+
+.footer {
+
+}

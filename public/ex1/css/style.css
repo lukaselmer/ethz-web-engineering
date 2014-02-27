@@ -1,0 +1,55 @@
+body, input, button, select, textarea {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #0b0b0b; }
+
+body {
+  background: #ebebeb; }
+
+a {
+  color: #999999;
+  text-decoration: none; }
+
+.fl {
+  float: left; }
+
+.clearer {
+  clear: both; }
+
+h1 {
+  text-align: center;
+  font-size: 200%; }
+  h1 a {
+    text-decoration: none; }
+
+.top-nav {
+  text-align: center;
+  margin: 10px 0; }
+  .top-nav ul {
+    display: inline-block; }
+    .top-nav ul li {
+      float: left;
+      display: block;
+      padding: 5px 5px;
+      background: #febc4b;
+      border: 2px solid #d9d9d9;
+      margin: 0 2px; }
+
+.left-nav {
+  border-radius: 10px;
+  background: #febc4b;
+  margin: 0 10px 0 2px;
+  width: 150px; }
+  .left-nav a {
+    display: block; }
+
+.main-content {
+  background: #febc4b;
+  border-radius: 10px;
+  margin-right: 10px;
+  width: 200px; }
+
+.right-content {
+  border-radius: 10px;
+  background: #febc4b;
+  margin-right: 2px;
+  width: 200px; }
