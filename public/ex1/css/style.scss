@@ -1,5 +1,5 @@
 $textColor: #0b0b0b;
-$linkColor: #999;
+$linkColor: #000;
 $primaryColor: #febc4b;
 $backgroundColor: #ebebeb;
 $socialLinksColor: #335ed7;
@@ -14,10 +14,20 @@ body, input, button, select, textarea {
 body {
   background: $backgroundColor;
 }
+#content {
+  width: 1200px;
+  margin:0px auto;
+}
 
 a {
   color: $linkColor;
   text-decoration: none;
+}
+
+a.more {
+  font-weight: bold;
+  display: block;
+  margin-top: 1em;
 }
 
 .fl {
@@ -37,6 +47,11 @@ h1 {
   }
 }
 
+h3 {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
 .top-nav {
   text-align: center;
   margin: 10px 0;
@@ -54,11 +69,8 @@ h1 {
 }
 
 .left-nav {
-  border-radius: $borderRadius;
-  background: $primaryColor;
-
   margin: 0 10px 0 2px;
-  padding: 10px;
+
 
   width: 150px;
   div {
@@ -82,7 +94,7 @@ h1 {
   margin-right: 10px;
   padding: 10px;
 
-  width: 200px;
+  width: 700px;
 
   >div{
     background: $backgroundColor;
@@ -93,19 +105,160 @@ h1 {
 }
 
 .right-content {
-  border-radius: $borderRadius;
-  background: $primaryColor;
-
   margin-right: 2px;
-  padding: 10px;
+  width: 250px;
 
-  width: 200px;
 
-  h3 {
+}
+
+.reviewer {
+  clear: both;
+  padding-top: 1ex;
+  overflow:hidden;
+
+  >img {
+    border-radius: $borderRadius;
+
+    margin-right: 1ex;
+    float: left;
+    width: 75px;
+
+  }
+
+  >span {
+    display: block;
     font-weight: bold;
+    padding-top: 3px;
+    padding-bottom: 1ex;
+  }
+
+  >div {
+    font-size: 80%;
+  }
+
+  a {
+    clear:both;
+    color:black;
+  }
+}
+
+.review {
+  text-align: center;
+  font-weight: bold;
+  >img {
+    border-radius: $borderRadius;
+    margin: 1ex 0;
+    width: 200px;
   }
 }
 
 .footer {
+  position: relative;
+  left: 180px;
+  color:#999;
+  margin-bottom: 50px;
 
+  div {
+    display: inline;
+  }
+
+  h3 {
+    font-size: 75%;
+    display: inline;
+  }
+
+  p {
+    margin-top: 1ex;
+    font-size: 90%;
+  }
+}
+
+//boxes
+.left-nav, .main-content, .content-box {
+  border-radius: $borderRadius;
+  background: $primaryColor;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#contest-box {
+  padding-left:3px;
+  padding-right:3px;
+  >img {
+    border-radius: $borderRadius;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  span {
+    font-weight: bold;
+  }
+}
+
+#social-box {
+  border-radius: $borderRadius;
+  background: $socialLinksColor;
+  padding: 10px 30px;
+
+  display: flex;
+  justify-content: space-around;
+
+  img {
+    width: 50px;
+  }
+}
+
+//main content
+.hotel-item {
+  overflow:hidden;
+  >div {overflow:hidden;}
+
+  img {
+    border-radius: $borderRadius;
+    width: 250px;
+    margin-bottom: 10px;
+    margin-right: 1ex;
+
+    float:left;
+  }
+
+  .author {
+    float:right;
+    a {
+      font-weight: normal;
+    }
+  }
+}
+
+.more-items {
+  text-align: center;
+  font-weight: bold;
+}
+
+.weekly {
+  img {
+    width: 600px;
+  }
+}
+
+.reviewers {
+  >h1 {
+    text-align: left;
+  }
+  >div {
+    display: flex;
+    justify-content: space-around;
+
+  }
+
+  >div>div {
+    overflow: hidden;
+    width: 50%;
+  }
+
+  img {
+    border-radius: $borderRadius;
+    width: 100px;
+    float: left;
+  }
 }
