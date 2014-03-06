@@ -284,6 +284,11 @@ body {
 
   .col-md-offset-12 {
     margin-left: 1140px; } }
+.row:after {
+  content: '';
+  display: block;
+  clear: both; }
+
 a {
   color: black;
   text-decoration: none; }
@@ -337,6 +342,10 @@ h3 {
         @media (max-width: 767px) {
           .top-nav ul li a {
             padding: 15px 12px; } }
+  .top-nav:after {
+    content: '';
+    display: block;
+    clear: both; }
 
 .left-nav {
   margin: 0 10px 0 2px; }
@@ -425,15 +434,24 @@ h3 {
   .contest-box span {
     font-weight: bold; }
 
-#social-box {
+.social-box {
   border-radius: 10px;
   background: #335ed7;
-  padding: 10px 30px;
-  display: flex;
-  justify-content: space-around; }
-  #social-box img {
-    border-radius: 0;
-    width: 50px; }
+  padding: 10px 5px 6px 5px;
+  text-align: center; }
+  .social-box a {
+    float: left;
+    display: block;
+    width: 50%;
+    text-align: center; }
+    .social-box a img {
+      border-radius: 0;
+      width: 50px;
+      max-width: 50px; }
+  .social-box:after {
+    content: '';
+    display: block;
+    clear: both; }
 
 .hotel-item {
   overflow: hidden; }
