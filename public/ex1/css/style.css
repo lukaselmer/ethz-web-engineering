@@ -373,10 +373,7 @@ h3 {
         margin: 3px 0; } }
 
 .main-content {
-  background: #febc4b;
-  border-radius: 10px;
-  margin-right: 10px;
-  padding: 10px; }
+  margin-right: 10px; }
   .main-content > div {
     background: #ebebeb;
     margin: 10px;
@@ -385,32 +382,56 @@ h3 {
 
 .right-content {
   margin-right: 2px; }
-
-.reviewer {
-  clear: both;
-  padding-top: 1ex;
-  overflow: hidden; }
-  .reviewer > img {
-    margin-right: 1ex;
-    float: left;
-    width: 40%; }
-  .reviewer > span {
-    display: block;
-    font-weight: bold;
-    padding-top: 3px;
-    padding-bottom: 1ex; }
-  .reviewer > div {
-    font-size: 80%; }
-  .reviewer a {
+  .right-content .contest-box {
+    padding-left: 3px;
+    padding-right: 3px; }
+    .right-content .contest-box > img {
+      width: 100%;
+      margin-bottom: 10px; }
+    .right-content .contest-box span {
+      font-weight: bold; }
+  .right-content .social-box {
+    border-radius: 10px;
+    background: #335ed7;
+    padding: 10px 5px 6px 5px;
+    text-align: center; }
+    .right-content .social-box a {
+      float: left;
+      display: block;
+      width: 50%;
+      text-align: center; }
+      .right-content .social-box a img {
+        border-radius: 0;
+        width: 50px;
+        max-width: 50px; }
+    .right-content .social-box:after {
+      content: '';
+      display: block;
+      clear: both; }
+  .right-content .reviewer {
     clear: both;
-    color: black; }
-
-.review {
-  text-align: center;
-  font-weight: bold; }
-  .review > img {
-    margin: 1ex 0;
-    width: 100%; }
+    padding-top: 1ex;
+    overflow: hidden; }
+    .right-content .reviewer > img {
+      margin-right: 1ex;
+      float: left;
+      width: 40%; }
+    .right-content .reviewer > span {
+      display: block;
+      font-weight: bold;
+      padding-top: 3px;
+      padding-bottom: 1ex; }
+    .right-content .reviewer > div {
+      font-size: 80%; }
+    .right-content .reviewer a {
+      clear: both;
+      color: black; }
+  .right-content .review {
+    text-align: center;
+    font-weight: bold; }
+    .right-content .review > img {
+      margin: 8px 0;
+      width: 100%; }
 
 .footer {
   color: #999;
@@ -424,39 +445,11 @@ h3 {
     margin-top: 1ex;
     font-size: 90%; }
 
-.left-nav, .main-content, .content-box {
+.content-box {
   border-radius: 10px;
   background: #febc4b;
   padding: 10px;
   margin-bottom: 10px; }
-
-.contest-box {
-  padding-left: 3px;
-  padding-right: 3px; }
-  .contest-box > img {
-    width: 100%;
-    margin-bottom: 10px; }
-  .contest-box span {
-    font-weight: bold; }
-
-.social-box {
-  border-radius: 10px;
-  background: #335ed7;
-  padding: 10px 5px 6px 5px;
-  text-align: center; }
-  .social-box a {
-    float: left;
-    display: block;
-    width: 50%;
-    text-align: center; }
-    .social-box a img {
-      border-radius: 0;
-      width: 50px;
-      max-width: 50px; }
-  .social-box:after {
-    content: '';
-    display: block;
-    clear: both; }
 
 .hotel-item {
   overflow: hidden; }

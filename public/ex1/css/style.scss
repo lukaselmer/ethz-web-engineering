@@ -235,11 +235,7 @@ h3 {
 }
 
 .main-content {
-  background: $primaryColor;
-  border-radius: $borderRadius;
-
   margin-right: 10px;
-  padding: 10px;
 
   > div {
     background: $backgroundColor;
@@ -252,45 +248,84 @@ h3 {
 .right-content {
   margin-right: 2px;
 
-}
+  .contest-box {
+    padding-left: 3px;
+    padding-right: 3px;
+    //padding: 0 3px 0 3px;
+    > img {
+      width: 100%;
+      margin-bottom: 10px;
+    }
 
-.reviewer {
-  clear: both;
-  padding-top: 1ex;
-  overflow: hidden;
-
-  > img {
-    margin-right: 1ex;
-    float: left;
-    width: 40%;
-
+    span {
+      font-weight: bold;
+    }
   }
 
-  > span {
-    display: block;
-    font-weight: bold;
-    padding-top: 3px;
-    padding-bottom: 1ex;
+  .social-box {
+    border-radius: $borderRadius;
+    background: $socialLinksColor;
+    padding: 10px 5px 6px 5px;
+    text-align: center;
+
+    a {
+      float: left;
+      display: block;
+      width: 50%;
+
+      text-align: center;
+      img {
+        border-radius: 0;
+        width: 50px;
+        max-width: 50px;
+      }
+    }
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
   }
 
-  > div {
-    font-size: 80%;
-  }
-
-  a {
+  .reviewer {
     clear: both;
-    color: black;
+    padding-top: 1ex;
+    overflow: hidden;
+
+    > img {
+      margin-right: 1ex;
+      float: left;
+      width: 40%;
+
+    }
+
+    > span {
+      display: block;
+      font-weight: bold;
+      padding-top: 3px;
+      padding-bottom: 1ex;
+    }
+
+    > div {
+      font-size: 80%;
+    }
+
+    a {
+      clear: both;
+      color: black;
+    }
+  }
+
+  .review {
+    text-align: center;
+    font-weight: bold;
+    > img {
+      margin: 8px 0;
+      width: 100%;
+    }
   }
 }
 
-.review {
-  text-align: center;
-  font-weight: bold;
-  > img {
-    margin: 1ex 0;
-    width: 100%;
-  }
-}
 
 .footer {
   color: #999;
@@ -312,50 +347,11 @@ h3 {
 }
 
 //boxes
-.left-nav, .main-content, .content-box {
+.content-box {
   border-radius: $borderRadius;
   background: $primaryColor;
   padding: 10px;
   margin-bottom: 10px;
-}
-
-.contest-box {
-  padding-left: 3px;
-  padding-right: 3px;
-  //padding: 0 3px 0 3px;
-  > img {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  span {
-    font-weight: bold;
-  }
-}
-
-.social-box {
-  border-radius: $borderRadius;
-  background: $socialLinksColor;
-  padding: 10px 5px 6px 5px;
-  text-align: center;
-
-  a {
-    float: left;
-    display: block;
-    width: 50%;
-
-    text-align: center;
-    img {
-      border-radius: 0;
-      width: 50px;
-      max-width: 50px;
-    }
-  }
-  &:after {
-    content: '';
-    display: block;
-    clear: both;
-  }
 }
 
 //main content
