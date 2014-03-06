@@ -5,7 +5,7 @@ body, input, button, select, textarea {
 body {
   background: #ebebeb; }
 
-#content {
+.main-container {
   width: 1200px;
   margin: 0px auto; }
 
