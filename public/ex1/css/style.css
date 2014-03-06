@@ -31,49 +31,85 @@ body {
     float: left;
     width: 60px; }
 
+  .col-md-offset-1 {
+    margin-left: 60px; }
+
   .col-md-2 {
     float: left;
     width: 120px; }
+
+  .col-md-offset-2 {
+    margin-left: 120px; }
 
   .col-md-3 {
     float: left;
     width: 180px; }
 
+  .col-md-offset-3 {
+    margin-left: 180px; }
+
   .col-md-4 {
     float: left;
     width: 240px; }
+
+  .col-md-offset-4 {
+    margin-left: 240px; }
 
   .col-md-5 {
     float: left;
     width: 300px; }
 
+  .col-md-offset-5 {
+    margin-left: 300px; }
+
   .col-md-6 {
     float: left;
     width: 360px; }
+
+  .col-md-offset-6 {
+    margin-left: 360px; }
 
   .col-md-7 {
     float: left;
     width: 420px; }
 
+  .col-md-offset-7 {
+    margin-left: 420px; }
+
   .col-md-8 {
     float: left;
     width: 480px; }
+
+  .col-md-offset-8 {
+    margin-left: 480px; }
 
   .col-md-9 {
     float: left;
     width: 540px; }
 
+  .col-md-offset-9 {
+    margin-left: 540px; }
+
   .col-md-10 {
     float: left;
     width: 600px; }
+
+  .col-md-offset-10 {
+    margin-left: 600px; }
 
   .col-md-11 {
     float: left;
     width: 660px; }
 
+  .col-md-offset-11 {
+    margin-left: 660px; }
+
   .col-md-12 {
     float: left;
-    width: 720px; } }
+    width: 720px; }
+
+  .col-md-offset-12 {
+    margin-left: 720px; } }
 @media (min-width: 992px) and (max-width: 1199px) {
   .container {
     width: 970px; }
@@ -82,49 +118,85 @@ body {
     float: left;
     width: 78px; }
 
+  .col-md-offset-1 {
+    margin-left: 78px; }
+
   .col-md-2 {
     float: left;
     width: 156px; }
+
+  .col-md-offset-2 {
+    margin-left: 156px; }
 
   .col-md-3 {
     float: left;
     width: 234px; }
 
+  .col-md-offset-3 {
+    margin-left: 234px; }
+
   .col-md-4 {
     float: left;
     width: 312px; }
+
+  .col-md-offset-4 {
+    margin-left: 312px; }
 
   .col-md-5 {
     float: left;
     width: 390px; }
 
+  .col-md-offset-5 {
+    margin-left: 390px; }
+
   .col-md-6 {
     float: left;
     width: 468px; }
+
+  .col-md-offset-6 {
+    margin-left: 468px; }
 
   .col-md-7 {
     float: left;
     width: 546px; }
 
+  .col-md-offset-7 {
+    margin-left: 546px; }
+
   .col-md-8 {
     float: left;
     width: 624px; }
+
+  .col-md-offset-8 {
+    margin-left: 624px; }
 
   .col-md-9 {
     float: left;
     width: 702px; }
 
+  .col-md-offset-9 {
+    margin-left: 702px; }
+
   .col-md-10 {
     float: left;
     width: 780px; }
+
+  .col-md-offset-10 {
+    margin-left: 780px; }
 
   .col-md-11 {
     float: left;
     width: 858px; }
 
+  .col-md-offset-11 {
+    margin-left: 858px; }
+
   .col-md-12 {
     float: left;
-    width: 936px; } }
+    width: 936px; }
+
+  .col-md-offset-12 {
+    margin-left: 936px; } }
 @media (min-width: 1200px) {
   .container {
     width: 1170px; }
@@ -133,49 +205,85 @@ body {
     float: left;
     width: 95px; }
 
+  .col-md-offset-1 {
+    margin-left: 95px; }
+
   .col-md-2 {
     float: left;
     width: 190px; }
+
+  .col-md-offset-2 {
+    margin-left: 190px; }
 
   .col-md-3 {
     float: left;
     width: 285px; }
 
+  .col-md-offset-3 {
+    margin-left: 285px; }
+
   .col-md-4 {
     float: left;
     width: 380px; }
+
+  .col-md-offset-4 {
+    margin-left: 380px; }
 
   .col-md-5 {
     float: left;
     width: 475px; }
 
+  .col-md-offset-5 {
+    margin-left: 475px; }
+
   .col-md-6 {
     float: left;
     width: 570px; }
+
+  .col-md-offset-6 {
+    margin-left: 570px; }
 
   .col-md-7 {
     float: left;
     width: 665px; }
 
+  .col-md-offset-7 {
+    margin-left: 665px; }
+
   .col-md-8 {
     float: left;
     width: 760px; }
+
+  .col-md-offset-8 {
+    margin-left: 760px; }
 
   .col-md-9 {
     float: left;
     width: 855px; }
 
+  .col-md-offset-9 {
+    margin-left: 855px; }
+
   .col-md-10 {
     float: left;
     width: 950px; }
+
+  .col-md-offset-10 {
+    margin-left: 950px; }
 
   .col-md-11 {
     float: left;
     width: 1045px; }
 
+  .col-md-offset-11 {
+    margin-left: 1045px; }
+
   .col-md-12 {
     float: left;
-    width: 1140px; } }
+    width: 1140px; }
+
+  .col-md-offset-12 {
+    margin-left: 1140px; } }
 a {
   color: black;
   text-decoration: none; }
@@ -220,13 +328,15 @@ h3 {
     .top-nav ul li {
       float: left;
       display: block;
-      padding: 5px 5px;
       background: #febc4b;
       border: 2px solid #d9d9d9;
       margin: 0 2px; }
-      @media (max-width: 767px) {
-        .top-nav ul li {
-          padding: 15px 12px; } }
+      .top-nav ul li a {
+        display: block;
+        padding: 5px 5px; }
+        @media (max-width: 767px) {
+          .top-nav ul li a {
+            padding: 15px 12px; } }
 
 .left-nav {
   margin: 0 10px 0 2px; }
@@ -289,8 +399,6 @@ h3 {
     width: 100%; }
 
 .footer {
-  position: relative;
-  left: 180px;
   color: #999;
   margin-bottom: 50px; }
   .footer div {

@@ -17,6 +17,7 @@ body {
 }
 
 // Same values as twitter bootstrap
+// Same names as twitter bootstrap (for compatibility)
 // http://getbootstrap.com/css/#grid
 
 $screen-xxs-max: 479px;
@@ -77,6 +78,9 @@ $screen-lg-min: 1200px;
       float: left;
       width: $colWidth * $i;
     }
+    .col-md-offset-#{$i} {
+      margin-left: $colWidth * $i;
+    }
   }
 }
 
@@ -91,6 +95,9 @@ $screen-lg-min: 1200px;
       float: left;
       width: $colWidth * $i;
     }
+    .col-md-offset-#{$i} {
+      margin-left: $colWidth * $i;
+    }
   }
 }
 
@@ -104,6 +111,9 @@ $screen-lg-min: 1200px;
     .col-md-#{$i} {
       float: left;
       width: $colWidth * $i;
+    }
+    .col-md-offset-#{$i} {
+      margin-left: $colWidth * $i;
     }
   }
 }
@@ -155,10 +165,6 @@ h3 {
   margin-bottom: 1em;
 }
 
-
-
-
-
 .top-nav {
   text-align: center;
   margin: 10px 0;
@@ -167,14 +173,19 @@ h3 {
     li {
       float: left;
       display: block;
-      padding: 5px 5px;
       background: $primaryColor;
       border: 2px solid $backgroundColor2;
       margin: 0 2px;
 
-      @media (max-width: $screen-xs-max) {
-        padding: 15px 12px;
+      a {
+        display: block;
+        padding: 5px 5px;
+
+        @media (max-width: $screen-xs-max) {
+          padding: 15px 12px;
+        }
       }
+
     }
   }
 }
@@ -263,8 +274,6 @@ h3 {
 }
 
 .footer {
-  position: relative;
-  left: 180px;
   color: #999;
   margin-bottom: 50px;
 
