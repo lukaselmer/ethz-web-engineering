@@ -166,6 +166,14 @@ h1 {
   }
 }
 
+h2 {
+  font-size: 200%;
+
+  a {
+    text-decoration: none;
+  }
+}
+
 h3 {
   font-weight: bold;
   margin-bottom: 1em;
@@ -403,22 +411,46 @@ h3 {
 }
 
 .reviewers {
-  > h1 {
-    text-align: left;
+  h2 {
+    margin: 5px 0 25px 0;
   }
-  > div {
-    display: flex;
-    justify-content: space-around;
+  .reviewer-profiles {
+    .reviewer-profile {
+      float: left;
+      width: 50%;
+      min-height: 130px;
+      margin: 0 0 10px 0;
+      img {
+        display: block;
+        float: left;
+        width: 29%;
+        margin: 0 7px 20px 0;
+      }
+      .attributes {
+        .name {
+          font-weight: bold;
+          margin: 0 0 6px 0;
+        }
+        .role {
+          margin: 0 0 7px 0;
+        }
+        .cite {
+          padding: 0 5px 0 0;
+        }
+      }
 
-  }
+      @media (max-width: $screen-sm-max) {
+        width: 100%;
+      }
+    }
 
-  > div > div {
-    overflow: hidden;
-    width: 50%;
-  }
-
-  img {
-    width: 29%;
-    float: left;
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
   }
 }
+
+
+
