@@ -180,16 +180,24 @@ a {
   color: black;
   text-decoration: none; }
 
-img {
-  border-radius: 10px; }
-
 a.more {
   font-weight: bold;
   display: block;
   margin-top: 1em; }
 
-.fl {
-  float: left; }
+img {
+  border-radius: 10px; }
+
+blockquote {
+  display: block;
+  margin: 20px 0;
+  font-style: italic; }
+  blockquote > div {
+    text-align: right;
+    font-style: normal;
+    font-weight: bold; }
+    blockquote > div img {
+      width: 12%; }
 
 .clearer {
   clear: both; }
@@ -216,6 +224,9 @@ h3 {
       background: #febc4b;
       border: 2px solid #d9d9d9;
       margin: 0 2px; }
+      @media (max-width: 767px) {
+        .top-nav ul li {
+          padding: 15px 12px; } }
 
 .left-nav {
   margin: 0 10px 0 2px; }
@@ -229,6 +240,13 @@ h3 {
     display: block;
     padding: 3px 0 1px 0;
     border-bottom: 3px solid #ebebeb; }
+    @media (max-width: 479px) {
+      .left-nav a {
+        text-align: center;
+        padding: 15px 5px 16px 5px;
+        border: 1px solid #ebebeb;
+        background: #d9d9d9;
+        margin: 3px 0; } }
 
 .main-content {
   background: #febc4b;
@@ -327,6 +345,8 @@ h3 {
   text-align: center;
   font-weight: bold; }
 
+.weekly .image-slider img {
+  width: 100%; }
 .weekly .image-slider .cropped {
   overflow: hidden;
   border-radius: 10px;
@@ -338,8 +358,6 @@ h3 {
     width: auto; }
 .weekly .image-slider .thumbnail {
   margin: 0 20% 0 20%; }
-.weekly img {
-  width: 100%; }
 
 .reviewers > h1 {
   text-align: left; }

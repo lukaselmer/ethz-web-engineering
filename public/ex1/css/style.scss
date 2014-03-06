@@ -5,6 +5,7 @@ $backgroundColor: #ebebeb;
 $socialLinksColor: #335ed7;
 $footerTextColor: #727272;
 $borderRadius: 10px;
+$backgroundColor2: #d9d9d9;
 
 body, input, button, select, textarea {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -19,13 +20,18 @@ body {
 // http://getbootstrap.com/css/#grid
 
 $screen-xxs-max: 479px;
+// for devices with width <= 480
 $screen-xs-min: 480px;
+// for devices with width 480-767
 $screen-xs-max: 767px;
 $screen-sm-min: 768px;
+// for devices with width 768-1023
 $screen-sm-max: 991px;
 $screen-md-min: 992px;
+// for devices with width 1024-1279
 $screen-md-max: 1199px;
 $screen-lg-min: 1200px;
+// for devices with width 1280+
 
 @media (max-width: $screen-xxs-max) {
   // We could also force the user to use the native app like this: .container { display: none; }
@@ -107,18 +113,28 @@ a {
   text-decoration: none;
 }
 
-img {
-  border-radius: $borderRadius;
-}
-
 a.more {
   font-weight: bold;
   display: block;
   margin-top: 1em;
 }
 
-.fl {
-  float: left;
+img {
+  border-radius: $borderRadius;
+}
+
+blockquote {
+  display: block;
+  margin: 20px 0;
+  font-style: italic;
+  > div {
+    text-align: right;
+    font-style: normal;
+    font-weight: bold;
+    img {
+      width: 12%;
+    }
+  }
 }
 
 .clearer {
@@ -139,6 +155,10 @@ h3 {
   margin-bottom: 1em;
 }
 
+
+
+
+
 .top-nav {
   text-align: center;
   margin: 10px 0;
@@ -149,8 +169,12 @@ h3 {
       display: block;
       padding: 5px 5px;
       background: $primaryColor;
-      border: 2px solid #d9d9d9;
+      border: 2px solid $backgroundColor2;
       margin: 0 2px;
+
+      @media (max-width: $screen-xs-max) {
+        padding: 15px 12px;
+      }
     }
   }
 }
@@ -169,6 +193,14 @@ h3 {
     display: block;
     padding: 3px 0 1px 0;
     border-bottom: 3px solid $backgroundColor;
+
+    @media (max-width: $screen-xxs-max) {
+      text-align: center;
+      padding: 15px 5px 16px 5px;
+      border: 1px solid $backgroundColor;
+      background: $backgroundColor2;
+      margin: 3px 0;
+    }
   }
 }
 
@@ -318,6 +350,9 @@ h3 {
 .weekly {
 
   .image-slider {
+    img {
+      width: 100%;
+    }
     .cropped {
       overflow: hidden;
       border-radius: $borderRadius;
@@ -333,9 +368,6 @@ h3 {
     .thumbnail {
       margin: 0 20% 0 20%;
     }
-  }
-  img {
-    width: 100%;
   }
 }
 
