@@ -18,6 +18,8 @@ body {
 // Same values as twitter bootstrap
 // http://getbootstrap.com/css/#grid
 
+$screen-xxs-max: 479px;
+$screen-xs-min: 480px;
 $screen-xs-max: 767px;
 $screen-sm-min: 768px;
 $screen-sm-max: 991px;
@@ -25,7 +27,30 @@ $screen-md-min: 992px;
 $screen-md-max: 1199px;
 $screen-lg-min: 1200px;
 
-@media (max-width: $screen-xs-max) {
+@media (max-width: $screen-xxs-max) {
+  // We could also force the user to use the native app like this: .container { display: none; }
+  .xxs-container {
+    padding: 5%;
+    a {
+      display: block;
+      font-weight: bold;
+      margin: 10px 0 0 0;
+      padding: 10px 16px;
+      border: 1px #ccc solid;
+      border-radius: 6px;
+      text-align: center;
+      background: #fff;
+    }
+  }
+}
+
+@media (min-width: $screen-xs-min) {
+  .xxs-container {
+    display: none;
+  }
+}
+
+@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
   // nothing to do yet...
 }
 
