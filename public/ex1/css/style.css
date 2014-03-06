@@ -12,59 +12,161 @@ body {
   .container {
     width: 750px; }
 
-  .col-md-2, .col-md-7, .col-md-3 {
-    float: left; }
+  .col-md-1 {
+    float: left;
+    width: 60px; }
 
   .col-md-2 {
+    float: left;
     width: 120px; }
 
   .col-md-3 {
+    float: left;
     width: 180px; }
 
+  .col-md-4 {
+    float: left;
+    width: 240px; }
+
+  .col-md-5 {
+    float: left;
+    width: 300px; }
+
+  .col-md-6 {
+    float: left;
+    width: 360px; }
+
   .col-md-7 {
+    float: left;
     width: 420px; }
 
+  .col-md-8 {
+    float: left;
+    width: 480px; }
+
+  .col-md-9 {
+    float: left;
+    width: 540px; }
+
+  .col-md-10 {
+    float: left;
+    width: 600px; }
+
+  .col-md-11 {
+    float: left;
+    width: 660px; }
+
   .col-md-12 {
+    float: left;
     width: 720px; } }
 @media (min-width: 992px) and (max-width: 1199px) {
   .container {
     width: 970px; }
 
-  .col-md-2, .col-md-7, .col-md-3 {
-    float: left; }
+  .col-md-1 {
+    float: left;
+    width: 78px; }
 
   .col-md-2 {
+    float: left;
     width: 156px; }
 
   .col-md-3 {
+    float: left;
     width: 234px; }
 
+  .col-md-4 {
+    float: left;
+    width: 312px; }
+
+  .col-md-5 {
+    float: left;
+    width: 390px; }
+
+  .col-md-6 {
+    float: left;
+    width: 468px; }
+
   .col-md-7 {
+    float: left;
     width: 546px; }
 
+  .col-md-8 {
+    float: left;
+    width: 624px; }
+
+  .col-md-9 {
+    float: left;
+    width: 702px; }
+
+  .col-md-10 {
+    float: left;
+    width: 780px; }
+
+  .col-md-11 {
+    float: left;
+    width: 858px; }
+
   .col-md-12 {
+    float: left;
     width: 936px; } }
 @media (min-width: 1200px) {
   .container {
     width: 1170px; }
 
-  .col-md-2, .col-md-7, .col-md-3 {
-    float: left; }
+  .col-md-1 {
+    float: left;
+    width: 95px; }
 
   .col-md-2 {
+    float: left;
     width: 190px; }
 
   .col-md-3 {
+    float: left;
     width: 285px; }
 
+  .col-md-4 {
+    float: left;
+    width: 380px; }
+
+  .col-md-5 {
+    float: left;
+    width: 475px; }
+
+  .col-md-6 {
+    float: left;
+    width: 570px; }
+
   .col-md-7 {
+    float: left;
     width: 665px; }
 
+  .col-md-8 {
+    float: left;
+    width: 760px; }
+
+  .col-md-9 {
+    float: left;
+    width: 855px; }
+
+  .col-md-10 {
+    float: left;
+    width: 950px; }
+
+  .col-md-11 {
+    float: left;
+    width: 1045px; }
+
   .col-md-12 {
+    float: left;
     width: 1140px; } }
 a {
   color: black;
   text-decoration: none; }
+
+img {
+  border-radius: 10px; }
 
 a.more {
   font-weight: bold;
@@ -132,10 +234,9 @@ h3 {
   padding-top: 1ex;
   overflow: hidden; }
   .reviewer > img {
-    border-radius: 10px;
     margin-right: 1ex;
     float: left;
-    width: 75px; }
+    width: 40%; }
   .reviewer > span {
     display: block;
     font-weight: bold;
@@ -151,9 +252,8 @@ h3 {
   text-align: center;
   font-weight: bold; }
   .review > img {
-    border-radius: 10px;
     margin: 1ex 0;
-    width: 200px; }
+    width: 100%; }
 
 .footer {
   position: relative;
@@ -175,14 +275,13 @@ h3 {
   padding: 10px;
   margin-bottom: 10px; }
 
-#contest-box {
+.contest-box {
   padding-left: 3px;
   padding-right: 3px; }
-  #contest-box > img {
-    border-radius: 10px;
+  .contest-box > img {
     width: 100%;
     margin-bottom: 10px; }
-  #contest-box span {
+  .contest-box span {
     font-weight: bold; }
 
 #social-box {
@@ -192,6 +291,7 @@ h3 {
   display: flex;
   justify-content: space-around; }
   #social-box img {
+    border-radius: 0;
     width: 50px; }
 
 .hotel-item {
@@ -199,8 +299,7 @@ h3 {
   .hotel-item > div {
     overflow: hidden; }
   .hotel-item img {
-    border-radius: 10px;
-    width: 250px;
+    width: 36.3%;
     margin-bottom: 10px;
     margin-right: 1ex;
     float: left; }
@@ -213,8 +312,19 @@ h3 {
   text-align: center;
   font-weight: bold; }
 
+.weekly .image-slider .cropped {
+  overflow: hidden;
+  border-radius: 10px;
+  height: 500px; }
+  .weekly .image-slider .cropped img {
+    margin: -15px 0 0 -400px;
+    border-radius: 0;
+    max-width: 2400px;
+    width: auto; }
+.weekly .image-slider .thumbnail {
+  margin: 0 20% 0 20%; }
 .weekly img {
-  width: 600px; }
+  width: 100%; }
 
 .reviewers > h1 {
   text-align: left; }
@@ -225,6 +335,5 @@ h3 {
   overflow: hidden;
   width: 50%; }
 .reviewers img {
-  border-radius: 10px;
-  width: 100px;
+  width: 29%;
   float: left; }
