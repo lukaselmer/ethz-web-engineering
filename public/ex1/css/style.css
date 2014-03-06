@@ -9,6 +9,36 @@ body {
   width: 1200px;
   margin: 0px auto; }
 
+@media (min-width: 1024px) {
+  .col-md-2, .col-md-7, .col-md-3 {
+    float: left; }
+
+  .col-md-1 {
+    width: 90px; }
+
+  .col-md-2 {
+    width: 180px; }
+
+  .col-md-3 {
+    width: 270px; }
+
+  .col-md-7 {
+    width: 630px; } }
+@media (min-width: 700px) and (max-width: 1023px) {
+  .col-md-2, .col-md-7, .col-md-3 {
+    float: left; }
+
+  .col-md-1 {
+    width: 70px; }
+
+  .col-md-2 {
+    width: 140px; }
+
+  .col-md-3 {
+    width: 210px; }
+
+  .col-md-7 {
+    width: 490px; } }
 a {
   color: black;
   text-decoration: none; }
@@ -48,8 +78,7 @@ h3 {
       margin: 0 2px; }
 
 .left-nav {
-  margin: 0 10px 0 2px;
-  width: 150px; }
+  margin: 0 10px 0 2px; }
   .left-nav div {
     text-align: center;
     background: #ebebeb;
@@ -65,8 +94,7 @@ h3 {
   background: #febc4b;
   border-radius: 10px;
   margin-right: 10px;
-  padding: 10px;
-  width: 700px; }
+  padding: 10px; }
   .main-content > div {
     background: #ebebeb;
     margin: 10px;
@@ -74,8 +102,7 @@ h3 {
     border-radius: 10px; }
 
 .right-content {
-  margin-right: 2px;
-  width: 250px; }
+  margin-right: 2px; }
 
 .reviewer {
   clear: both;

@@ -14,9 +14,59 @@ body, input, button, select, textarea {
 body {
   background: $backgroundColor;
 }
+
 .main-container {
   width: 1200px;
-  margin:0px auto;
+  margin: 0px auto;
+}
+
+@media (min-width: 1024px) {
+  $colWidth: 90;
+
+  .col-md-2, .col-md-7, .col-md-3 {
+    float: left;
+  }
+
+  .col-md-1 {
+    width: $colWidth * 1px;
+  }
+
+  .col-md-2 {
+    width: $colWidth * 2px;
+  }
+
+  .col-md-3 {
+    width: $colWidth * 3px;
+  }
+
+  .col-md-7 {
+    width: $colWidth * 7px;
+  }
+}
+
+
+@media (min-width: 700px) and (max-width: 1023px) {
+  $colWidth: 70;
+
+  .col-md-2, .col-md-7, .col-md-3 {
+    float: left;
+  }
+
+  .col-md-1 {
+    width: $colWidth * 1px;
+  }
+
+  .col-md-2 {
+    width: $colWidth * 2px;
+  }
+
+  .col-md-3 {
+    width: $colWidth * 3px;
+  }
+
+  .col-md-7 {
+    width: $colWidth * 7px;
+  }
 }
 
 a {
@@ -71,8 +121,6 @@ h3 {
 .left-nav {
   margin: 0 10px 0 2px;
 
-
-  width: 150px;
   div {
     text-align: center;
     background: $backgroundColor;
@@ -94,9 +142,7 @@ h3 {
   margin-right: 10px;
   padding: 10px;
 
-  width: 700px;
-
-  >div{
+  > div {
     background: $backgroundColor;
     margin: 10px;
     padding: 10px;
@@ -106,17 +152,15 @@ h3 {
 
 .right-content {
   margin-right: 2px;
-  width: 250px;
-
 
 }
 
 .reviewer {
   clear: both;
   padding-top: 1ex;
-  overflow:hidden;
+  overflow: hidden;
 
-  >img {
+  > img {
     border-radius: $borderRadius;
 
     margin-right: 1ex;
@@ -125,27 +169,27 @@ h3 {
 
   }
 
-  >span {
+  > span {
     display: block;
     font-weight: bold;
     padding-top: 3px;
     padding-bottom: 1ex;
   }
 
-  >div {
+  > div {
     font-size: 80%;
   }
 
   a {
-    clear:both;
-    color:black;
+    clear: both;
+    color: black;
   }
 }
 
 .review {
   text-align: center;
   font-weight: bold;
-  >img {
+  > img {
     border-radius: $borderRadius;
     margin: 1ex 0;
     width: 200px;
@@ -155,7 +199,7 @@ h3 {
 .footer {
   position: relative;
   left: 180px;
-  color:#999;
+  color: #999;
   margin-bottom: 50px;
 
   div {
@@ -182,9 +226,9 @@ h3 {
 }
 
 #contest-box {
-  padding-left:3px;
-  padding-right:3px;
-  >img {
+  padding-left: 3px;
+  padding-right: 3px;
+  > img {
     border-radius: $borderRadius;
     width: 100%;
     margin-bottom: 10px;
@@ -210,8 +254,10 @@ h3 {
 
 //main content
 .hotel-item {
-  overflow:hidden;
-  >div {overflow:hidden;}
+  overflow: hidden;
+  > div {
+    overflow: hidden;
+  }
 
   img {
     border-radius: $borderRadius;
@@ -219,11 +265,11 @@ h3 {
     margin-bottom: 10px;
     margin-right: 1ex;
 
-    float:left;
+    float: left;
   }
 
   .author {
-    float:right;
+    float: right;
     a {
       font-weight: normal;
     }
@@ -242,16 +288,16 @@ h3 {
 }
 
 .reviewers {
-  >h1 {
+  > h1 {
     text-align: left;
   }
-  >div {
+  > div {
     display: flex;
     justify-content: space-around;
 
   }
 
-  >div>div {
+  > div > div {
     overflow: hidden;
     width: 50%;
   }
