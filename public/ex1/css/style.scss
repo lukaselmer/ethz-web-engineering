@@ -15,57 +15,101 @@ body {
   background: $backgroundColor;
 }
 
-.main-container {
-  width: 1200px;
-  margin: 0px auto;
-}
+// Same values as twitter bootstrap
+// http://getbootstrap.com/css/#grid
 
-@media (min-width: 1024px) {
-  $colWidth: 90;
+$screen-xs-max: 767px;
+$screen-sm-min: 768px;
+$screen-sm-max: 991px;
+$screen-md-min: 992px;
+$screen-md-max: 1199px;
+$screen-lg-min: 1200px;
 
+@media (max-width: $screen-xs-max) {
   .col-md-2, .col-md-7, .col-md-3 {
-    float: left;
   }
-
-  .col-md-1 {
-    width: $colWidth * 1px;
-  }
-
   .col-md-2 {
-    width: $colWidth * 2px;
   }
-
   .col-md-3 {
-    width: $colWidth * 3px;
   }
-
   .col-md-7 {
-    width: $colWidth * 7px;
+  }
+  .col-md-12 {
   }
 }
 
+@media (min-width: $screen-sm-min) {
+  .container {
+    margin: 0px auto;
+  }
+}
 
-@media (min-width: 700px) and (max-width: 1023px) {
-  $colWidth: 70;
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  $colWidth: 60px;
 
+  .container {
+    width: 750px;
+  }
   .col-md-2, .col-md-7, .col-md-3 {
     float: left;
   }
-
-  .col-md-1 {
-    width: $colWidth * 1px;
-  }
-
   .col-md-2 {
-    width: $colWidth * 2px;
+    width: $colWidth * 2;
   }
-
   .col-md-3 {
-    width: $colWidth * 3px;
+    width: $colWidth * 3;
   }
-
   .col-md-7 {
-    width: $colWidth * 7px;
+    width: $colWidth * 7;
+  }
+  .col-md-12 {
+    width: $colWidth * 12;
+  }
+}
+
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+  $colWidth: 78px;
+
+  .container {
+    width: 970px;
+  }
+  .col-md-2, .col-md-7, .col-md-3 {
+    float: left;
+  }
+  .col-md-2 {
+    width: $colWidth * 2;
+  }
+  .col-md-3 {
+    width: $colWidth * 3;
+  }
+  .col-md-7 {
+    width: $colWidth * 7;
+  }
+  .col-md-12 {
+    width: $colWidth * 12;
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  $colWidth: 95px;
+
+  .container {
+    width: 1170px;
+  }
+  .col-md-2, .col-md-7, .col-md-3 {
+    float: left;
+  }
+  .col-md-2 {
+    width: $colWidth * 2;
+  }
+  .col-md-3 {
+    width: $colWidth * 3;
+  }
+  .col-md-7 {
+    width: $colWidth * 7;
+  }
+  .col-md-12 {
+    width: $colWidth * 12;
   }
 }
 
