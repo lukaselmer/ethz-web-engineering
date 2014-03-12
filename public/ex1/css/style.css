@@ -316,6 +316,7 @@ blockquote {
   clear: both; }
 
 h1 {
+  font-weight: bold;
   text-align: center;
   font-size: 200%; }
   h1 a {
@@ -332,7 +333,7 @@ h3 {
 
 .content-box {
   border-radius: 10px;
-  background: #febc4b;
+  background: #fdbb53;
   padding: 10px;
   margin-bottom: 10px; }
 
@@ -344,7 +345,7 @@ h3 {
     .top-nav ul li {
       float: left;
       display: block;
-      background: #febc4b;
+      background: #fdbb53;
       border: 2px solid #d9d9d9;
       margin: 0 2px; }
       .top-nav ul li a {
