@@ -34,6 +34,8 @@ $screen-md-max: 1199px;
 $screen-lg-min: 1200px;
 // for devices with width 1280+
 
+$num-columns: 12;
+
 @media (max-width: $screen-xxs-max) {
   // We could also force the user to use the native app like this: .container { display: none; }
   .xxs-container {
@@ -68,12 +70,14 @@ $screen-lg-min: 1200px;
 }
 
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-  $colWidth: 60px;
+  //$colWidth: 60px;
+  $colWidth: 99.9% / $num-columns;
 
   .container {
-    width: 750px;
+    //width: 750px;
+    width: 100%;
   }
-  @for $i from 1 through 12 {
+  @for $i from 1 through $num-columns {
     .col-md-#{$i} {
       float: left;
       width: $colWidth * $i;
@@ -85,12 +89,14 @@ $screen-lg-min: 1200px;
 }
 
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-  $colWidth: 78px;
+  //$colWidth: 78px;
+  $colWidth: 99.9% / $num-columns;
 
   .container {
-    width: 970px;
+    //width: 970px;
+    width: 100%;
   }
-  @for $i from 1 through 12 {
+  @for $i from 1 through $num-columns {
     .col-md-#{$i} {
       float: left;
       width: $colWidth * $i;
@@ -102,10 +108,11 @@ $screen-lg-min: 1200px;
 }
 
 @media (min-width: $screen-lg-min) {
-  $colWidth: 95px;
+  $colWidth: 99.9% / $num-columns;//95px;
 
   .container {
-    width: 1170px;
+    max-width: 1400px;
+    width: 100%; // 1170px;
   }
   @for $i from 1 through 12 {
     .col-md-#{$i} {
