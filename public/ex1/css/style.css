@@ -1900,7 +1900,7 @@ h3 {
       border: 2px solid #d9d9d9;
       margin: 0 2px; }
       .top-nav ul li:hover {
-        background: #ebebeb; }
+        background: white; }
       .top-nav ul li a {
         display: block;
         padding: 5px 5px; }
@@ -1927,7 +1927,7 @@ h3 {
     padding: 3px 0 1px 0;
     border-bottom: 3px solid #ebebeb; }
     .left-nav a:hover {
-      background: #ebebeb; }
+      background: white; }
     @media (max-width: 991px) {
       .left-nav a {
         text-align: center;
@@ -1938,7 +1938,7 @@ h3 {
 
 .main-content {
   margin-right: 10px; }
-  .main-content > div {
+  .main-content > div, .main-content a.more-items {
     background: #ebebeb;
     margin: 10px;
     padding: 10px;
@@ -2004,9 +2004,14 @@ h3 {
       float: right; }
       .main-content .hotel-item .author a {
         font-weight: normal; }
-  .main-content .more-items {
+    .main-content .hotel-item:hover {
+      background: white; }
+  .main-content a.more-items {
+    display: block;
     text-align: center;
     font-weight: bold; }
+    .main-content a.more-items:hover {
+      background: white; }
 
 .right-content {
   margin-right: 2px; }
