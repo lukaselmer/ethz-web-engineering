@@ -436,8 +436,7 @@ h3 {
     .reviewer-right {
       .name {
         font-weight: bold;
-        padding-top: 3px;
-        padding-bottom: 1ex;
+        padding: 3px 0 4px 0;
       }
 
       .title {
@@ -445,15 +444,20 @@ h3 {
       }
     }
 
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $screen-md-min) {
       .reviewer-right {
         padding-top: 1ex;
-        overflow: hidden;
 
         img {
           margin-right: 1ex;
           float: left;
           width: 40%;
+        }
+
+        &:after{
+          content: '';
+          display: block;
+          clear: both;
         }
       }
     }
@@ -464,6 +468,15 @@ h3 {
         width: 50%;
         img {
           width: 98%;
+        }
+      }
+    }
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      .reviewer-right {
+        padding: 0 0 15px 0;
+        img {
+          width: 100%;
         }
       }
     }

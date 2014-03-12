@@ -2038,24 +2038,31 @@ h3 {
       clear: both; }
   .right-content .reviewers-right .reviewer-right .name {
     font-weight: bold;
-    padding-top: 3px;
-    padding-bottom: 1ex; }
+    padding: 3px 0 4px 0; }
   .right-content .reviewers-right .reviewer-right .title {
     font-size: 0.9em; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     .right-content .reviewers-right .reviewer-right {
-      padding-top: 1ex;
-      overflow: hidden; }
+      padding-top: 1ex; }
       .right-content .reviewers-right .reviewer-right img {
         margin-right: 1ex;
         float: left;
-        width: 40%; } }
+        width: 40%; }
+      .right-content .reviewers-right .reviewer-right:after {
+        content: '';
+        display: block;
+        clear: both; } }
   @media (max-width: 767px) {
     .right-content .reviewers-right .reviewer-right {
       float: left;
       width: 50%; }
       .right-content .reviewers-right .reviewer-right img {
         width: 98%; } }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .right-content .reviewers-right .reviewer-right {
+      padding: 0 0 15px 0; }
+      .right-content .reviewers-right .reviewer-right img {
+        width: 100%; } }
   .right-content .reviewers-right:after {
     content: '';
     display: block;
