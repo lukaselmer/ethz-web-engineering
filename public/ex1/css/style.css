@@ -199,7 +199,7 @@ body {
     margin-left: 99.9%; } }
 @media (min-width: 1200px) {
   .container {
-    max-width: 1400px;
+    max-width: 1250px;
     width: 100%; }
 
   .col-md-1 {
@@ -340,7 +340,7 @@ h3 {
 
 .top-nav {
   text-align: center;
-  margin: 10px 0; }
+  margin: 18px 0; }
   .top-nav ul {
     display: inline-block; }
     .top-nav ul li {
