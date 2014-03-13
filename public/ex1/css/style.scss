@@ -36,7 +36,7 @@ $screen-md-max: 1199px;
 $screen-lg-min: 1200px;
 // for devices with width 1280+
 
-$num-columns: 72;
+$num-columns: 12;
 
 @media (max-width: $screen-xxs-max) {
   // We could also force the user to use the native app like this: .container { display: none; }
@@ -123,6 +123,10 @@ $num-columns: 72;
   }
   .col-md-content-right {
     width: 99.99% - $colLeftWidth - $colCenterWidth;
+  }
+
+  .col-md-offset-left {
+    margin-left: $colLeftWidth;
   }
 }
 
