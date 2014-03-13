@@ -2078,12 +2078,12 @@ h3 {
     content: '';
     display: block;
     clear: both; }
-  .right-content .review {
+  .right-content .reviews-right-box .review {
     text-align: center;
     font-weight: bold; }
-    .right-content .review > img {
-      margin: 8px 0;
-      width: 100%; }
+    .right-content .reviews-right-box .review > img {
+      margin: 3px 0;
+      width: 80%; }
 
 .footer {
   color: #999;
