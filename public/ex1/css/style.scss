@@ -72,6 +72,11 @@ $num-columns: 72;
       padding: 0 2%;
     }
   }
+
+  .col-md-content-left, .col-md-content-center, .col-md-content-right {
+    margin: 0 0 15px 0;
+    padding: 0 2%;
+  }
 }
 
 @media (min-width: $screen-sm-min) {
@@ -80,45 +85,14 @@ $num-columns: 72;
   }
 }
 
-@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-  //$colWidth: 60px;
-  $colWidth: 99.9% / $num-columns;
+//@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+//$colWidth: 60px;
+//.container { width: 750px;}}
+//@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+//$colWidth: 78px;
+//.container { width: 970px; }}
 
-  .container {
-    //width: 750px;
-    width: 100%;
-  }
-  @for $i from 1 through $num-columns {
-    .col-md-#{$i} {
-      float: left;
-      width: $colWidth * $i;
-    }
-    .col-md-offset-#{$i} {
-      margin-left: $colWidth * $i;
-    }
-  }
-}
-
-@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-  //$colWidth: 78px;
-  $colWidth: 99.9% / $num-columns;
-
-  .container {
-    //width: 970px;
-    width: 100%;
-  }
-  @for $i from 1 through $num-columns {
-    .col-md-#{$i} {
-      float: left;
-      width: $colWidth * $i;
-    }
-    .col-md-offset-#{$i} {
-      margin-left: $colWidth * $i;
-    }
-  }
-}
-
-@media (min-width: $screen-lg-min) {
+@media (min-width: $screen-sm-min) {
   $colWidth: 99.9% / $num-columns; //95px;
 
   .container {
@@ -133,6 +107,22 @@ $num-columns: 72;
     .col-md-offset-#{$i} {
       margin-left: $colWidth * $i;
     }
+  }
+
+  $colLeftWidth: 14.85%;
+  $colCenterWidth: 64.9%;
+
+  .col-md-content-left, .col-md-content-center, .col-md-content-right {
+    float: left;
+  }
+  .col-md-content-left {
+    width: $colLeftWidth;
+  }
+  .col-md-content-center {
+    width: $colCenterWidth;
+  }
+  .col-md-content-right {
+    width: 99.99% - $colLeftWidth - $colCenterWidth;
   }
 }
 
@@ -419,7 +409,7 @@ h3 {
         margin: 0 0 5px 0;
       }
 
-      a.more{
+      a.more {
         margin-bottom: 12px;
       }
     }
