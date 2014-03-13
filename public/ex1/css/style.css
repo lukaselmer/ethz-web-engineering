@@ -1847,7 +1847,7 @@ a {
 a.more {
   font-weight: bold;
   display: block;
-  margin-top: 1em; }
+  margin-top: 15px; }
 
 img {
   border-radius: 10px; }
@@ -1879,14 +1879,13 @@ h2 {
     text-decoration: none; }
 
 h3 {
+  font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 1em; }
 
 .content-box {
   border-radius: 10px;
-  background: #ffc45e;
-  padding: 10px;
-  margin-bottom: 10px; }
+  background: #ffc45e; }
 
 .top-nav {
   text-align: center;
@@ -1915,7 +1914,8 @@ h3 {
     clear: both; }
 
 .left-nav {
-  margin: 0 10px 0 2px; }
+  margin: 0 10px 0 2px;
+  padding: 18px 10px 12px 10px; }
   .left-nav div {
     text-align: center;
     background: #ebebeb;
@@ -1924,7 +1924,7 @@ h3 {
     margin: 2px 0 3px 0; }
   .left-nav a {
     display: block;
-    padding: 3px 0 1px 0;
+    padding: 7px 0 1px 0;
     border-bottom: 3px solid #ebebeb; }
     .left-nav a:hover {
       background: white; }
@@ -1937,7 +1937,8 @@ h3 {
         margin: 3px 0; } }
 
 .main-content {
-  margin-right: 10px; }
+  margin: 0 10px 10px 0;
+  padding: 10px 3px; }
   .main-content > div, .main-content a.more-items {
     background: #ebebeb;
     margin: 10px;
@@ -2015,9 +2016,12 @@ h3 {
 
 .right-content {
   margin-right: 2px; }
+  .right-content .content-box {
+    padding: 10px 3px;
+    margin-bottom: 10px; }
   .right-content .contest-box {
-    padding-left: 3px;
-    padding-right: 3px; }
+    /*padding-left: 3px;
+    padding-right: 3px;*/ }
     .right-content .contest-box > img {
       width: 100%;
       margin-bottom: 10px; }
@@ -2025,7 +2029,7 @@ h3 {
       font-weight: bold; }
   .right-content .social-box {
     border-radius: 10px;
-    background: #335ed7;
+    background: #3b73db;
     padding: 10px 5px 6px 5px;
     text-align: center; }
     .right-content .social-box a {
@@ -2041,34 +2045,36 @@ h3 {
       content: '';
       display: block;
       clear: both; }
-  .right-content .reviewers-right .reviewer-right .name {
+  .right-content .reviewers-right-box a.more {
+    margin-top: 8px; }
+  .right-content .reviewers-right-box .reviewers-right .reviewer-right .name {
     font-weight: bold;
     padding: 3px 0 4px 0; }
-  .right-content .reviewers-right .reviewer-right .title {
+  .right-content .reviewers-right-box .reviewers-right .reviewer-right .title {
     font-size: 0.9em; }
   @media (min-width: 992px) {
-    .right-content .reviewers-right .reviewer-right {
-      padding-top: 1ex; }
-      .right-content .reviewers-right .reviewer-right img {
-        margin-right: 1ex;
+    .right-content .reviewers-right-box .reviewers-right .reviewer-right {
+      padding-top: 1px; }
+      .right-content .reviewers-right-box .reviewers-right .reviewer-right img {
+        margin: 0 1px 5px 0;
         float: left;
-        width: 40%; }
-      .right-content .reviewers-right .reviewer-right:after {
+        width: 30%; }
+      .right-content .reviewers-right-box .reviewers-right .reviewer-right:after {
         content: '';
         display: block;
         clear: both; } }
   @media (max-width: 767px) {
-    .right-content .reviewers-right .reviewer-right {
+    .right-content .reviewers-right-box .reviewers-right .reviewer-right {
       float: left;
       width: 50%; }
-      .right-content .reviewers-right .reviewer-right img {
+      .right-content .reviewers-right-box .reviewers-right .reviewer-right img {
         width: 98%; } }
   @media (min-width: 768px) and (max-width: 991px) {
-    .right-content .reviewers-right .reviewer-right {
+    .right-content .reviewers-right-box .reviewers-right .reviewer-right {
       padding: 0 0 15px 0; }
-      .right-content .reviewers-right .reviewer-right img {
+      .right-content .reviewers-right-box .reviewers-right .reviewer-right img {
         width: 100%; } }
-  .right-content .reviewers-right:after {
+  .right-content .reviewers-right-box .reviewers-right:after {
     content: '';
     display: block;
     clear: both; }

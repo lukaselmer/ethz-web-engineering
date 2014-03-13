@@ -3,7 +3,7 @@ $linkColor: #000;
 $linkHoverColor: #666;
 $primaryColor: #ffc45e;
 $backgroundColor: #ebebeb;
-$socialLinksColor: #335ed7;
+$socialLinksColor: #3b73db;
 $footerTextColor: #727272;
 $borderRadius: 10px;
 $backgroundColor2: #d9d9d9;
@@ -154,7 +154,7 @@ a {
 a.more {
   font-weight: bold;
   display: block;
-  margin-top: 1em;
+  margin-top: 15px;
 }
 
 img {
@@ -198,6 +198,7 @@ h2 {
 }
 
 h3 {
+  font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 1em;
 }
@@ -205,8 +206,6 @@ h3 {
 .content-box {
   border-radius: $borderRadius;
   background: $primaryColor;
-  padding: 10px;
-  margin-bottom: 10px;
 }
 
 .top-nav {
@@ -250,6 +249,7 @@ h3 {
 
 .left-nav {
   margin: 0 10px 0 2px;
+  padding: 18px 10px 12px 10px;
 
   div {
     text-align: center;
@@ -260,7 +260,7 @@ h3 {
   }
   a {
     display: block;
-    padding: 3px 0 1px 0;
+    padding: 7px 0 1px 0;
     border-bottom: 3px solid $backgroundColor;
 
     &:hover {
@@ -279,7 +279,8 @@ h3 {
 }
 
 .main-content {
-  margin-right: 10px;
+  margin: 0 10px 10px 0;
+  padding: 10px 3px;
 
   > div, a.more-items {
     background: $backgroundColor;
@@ -289,7 +290,6 @@ h3 {
   }
 
   .weekly {
-
     .image-slider {
       margin: 0 0 5px 0;
       img {
@@ -402,9 +402,14 @@ h3 {
 .right-content {
   margin-right: 2px;
 
+  .content-box {
+    padding: 10px 3px;
+    margin-bottom: 10px;
+  }
+
   .contest-box {
-    padding-left: 3px;
-    padding-right: 3px;
+    /*padding-left: 3px;
+    padding-right: 3px;*/
     //padding: 0 3px 0 3px;
     > img {
       width: 100%;
@@ -441,59 +446,65 @@ h3 {
     }
   }
 
-  .reviewers-right {
-    .reviewer-right {
-      .name {
-        font-weight: bold;
-        padding: 3px 0 4px 0;
-      }
-
-      .title {
-        font-size: 0.9em;
-      }
+  .reviewers-right-box {
+    a.more {
+      margin-top: 8px;
     }
 
-    @media (min-width: $screen-md-min) {
+    .reviewers-right {
       .reviewer-right {
-        padding-top: 1ex;
+        .name {
+          font-weight: bold;
+          padding: 3px 0 4px 0;
+        }
 
-        img {
-          margin-right: 1ex;
+        .title {
+          font-size: 0.9em;
+        }
+      }
+
+      @media (min-width: $screen-md-min) {
+        .reviewer-right {
+          padding-top: 1px;
+
+          img {
+            margin: 0 1px 5px 0;
+            float: left;
+            width: 30%;
+          }
+
+          &:after {
+            content: '';
+            display: block;
+            clear: both;
+          }
+        }
+      }
+
+      @media (max-width: $screen-xs-max) {
+        .reviewer-right {
           float: left;
-          width: 40%;
-        }
-
-        &:after {
-          content: '';
-          display: block;
-          clear: both;
+          width: 50%;
+          img {
+            width: 98%;
+          }
         }
       }
-    }
 
-    @media (max-width: $screen-xs-max) {
-      .reviewer-right {
-        float: left;
-        width: 50%;
-        img {
-          width: 98%;
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        .reviewer-right {
+          padding: 0 0 15px 0;
+          img {
+            width: 100%;
+          }
         }
       }
-    }
 
-    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-      .reviewer-right {
-        padding: 0 0 15px 0;
-        img {
-          width: 100%;
-        }
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
       }
-    }
-
-    &:after {
-      content: '';
-      display: block;
-      clear: both;
     }
   }
 
