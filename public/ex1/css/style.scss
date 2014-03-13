@@ -109,25 +109,48 @@ $num-columns: 12;
     }
   }
 
-  $colLeftWidth: 14.85%;
-  $colCenterWidth: 64.9%;
-
   .col-md-content-left, .col-md-content-center, .col-md-content-right {
     float: left;
   }
-  .col-md-content-left {
-    width: $colLeftWidth;
-  }
-  .col-md-content-center {
-    width: $colCenterWidth;
-  }
-  .col-md-content-right {
-    width: 99.99% - $colLeftWidth - $colCenterWidth;
+
+  @media (min-width: $screen-md-min) {
+    $colLeftWidth: 14.85%;
+    $colCenterWidth: 64.9%;
+
+    .col-md-content-left {
+      width: $colLeftWidth;
+    }
+    .col-md-content-center {
+      width: $colCenterWidth;
+    }
+    .col-md-content-right {
+      width: 99.99% - $colLeftWidth - $colCenterWidth;
+    }
+    .col-md-offset-left {
+      margin-left: $colLeftWidth;
+    }
   }
 
-  .col-md-offset-left {
-    margin-left: $colLeftWidth;
+  @media (max-width: $screen-sm-max) {
+    $colCenterWidth: 79%;
+    $colRightWidth: 19.7%;
+
+    .col-md-content-left {
+      width: 99.99%;
+      margin: 0 0 10px 0;
+    }
+    .col-md-content-center {
+      margin-left: 2px;
+      width: $colCenterWidth;
+    }
+    .col-md-content-right {
+      width: $colRightWidth;
+    }
+    .col-md-offset-left {
+      margin-left: 0px;
+    }
   }
+
 }
 
 .row:after {

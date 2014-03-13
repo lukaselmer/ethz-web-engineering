@@ -165,8 +165,8 @@ body {
     margin-left: 99.9%; }
 
   .col-md-content-left, .col-md-content-center, .col-md-content-right {
-    float: left; }
-
+    float: left; } }
+@media (min-width: 768px) and (min-width: 992px) {
   .col-md-content-left {
     width: 14.85%; }
 
@@ -178,6 +178,20 @@ body {
 
   .col-md-offset-left {
     margin-left: 14.85%; } }
+@media (min-width: 768px) and (max-width: 991px) {
+  .col-md-content-left {
+    width: 99.99%;
+    margin: 0 0 10px 0; }
+
+  .col-md-content-center {
+    margin-left: 2px;
+    width: 79%; }
+
+  .col-md-content-right {
+    width: 19.7%; }
+
+  .col-md-offset-left {
+    margin-left: 0px; } }
 .row:after {
   content: '';
   display: block;
