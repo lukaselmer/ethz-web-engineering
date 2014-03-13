@@ -298,14 +298,56 @@ h3 {
       .cropped {
         overflow: hidden;
         border-radius: $borderRadius;
-        height: 500px;
 
         img {
-          margin: -15px 0 0 -400px;
           border-radius: 0;
-          max-width: 2400px;
           width: auto;
         }
+
+        @media (min-width: $screen-lg-min) {
+          height: 467px;
+          img {
+            // max width is set so that the zoom is right to see the concert hall
+            max-width: 2400px;
+            // 15px shifted to top
+            // 400px shifted to left
+            margin: -15px 0 0 -400px;
+          }
+        }
+
+        @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+          height: 367px;
+          img {
+            // max width is set so that the zoom is right to see the concert hall
+            max-width: 2400px;
+            // 15px shifted to top
+            // 400px shifted to left
+            margin: -115px 0 0 -500px;
+          }
+        }
+
+        @media (min-width: $screen-xs-min) and (max-width: $screen-sm-max) {
+          height: 300px;
+          img {
+            // max width is set so that the zoom is right to see the concert hall
+            max-width: 2400px;
+            // 182px shifted to top
+            // 400px shifted to left
+            margin: -182px 0 0 -520px;
+          }
+        }
+
+        @media (max-width: $screen-xxs-max) {
+          height: 250px;
+          img {
+            // max width is set so that the zoom is right to see the concert hall
+            max-width: 2400px;
+            // 182px shifted to top
+            // 400px shifted to left
+            margin: -232px 0 0 -600px;
+          }
+        }
+
       }
       .thumbnail {
         margin: 0 20% 0 20%;
@@ -509,12 +551,34 @@ h3 {
   }
 
   .reviews-right-box {
-    .review {
-      text-align: center;
-      font-weight: bold;
-      > img {
-        margin: 3px 0;
-        width: 80%;
+    .reviews-right {
+      @media (min-width: $screen-sm-min) {
+        .review-right {
+          text-align: center;
+          font-weight: bold;
+          > img {
+            margin: 3px 0;
+            width: 80%;
+          }
+        }
+      }
+      @media (max-width: $screen-xs-max) {
+        .review-right {
+          width: 50%;
+          float: left;
+          text-align: center;
+          font-weight: bold;
+          > img {
+            margin: 3px 0;
+            width: 98%;
+          }
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          clear: both;
+        }
       }
     }
   }

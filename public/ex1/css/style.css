@@ -1950,13 +1950,34 @@ h3 {
       width: 100%; }
     .main-content .weekly .image-slider .cropped {
       overflow: hidden;
-      border-radius: 10px;
-      height: 500px; }
+      border-radius: 10px; }
       .main-content .weekly .image-slider .cropped img {
-        margin: -15px 0 0 -400px;
         border-radius: 0;
-        max-width: 2400px;
         width: auto; }
+      @media (min-width: 1200px) {
+        .main-content .weekly .image-slider .cropped {
+          height: 467px; }
+          .main-content .weekly .image-slider .cropped img {
+            max-width: 2400px;
+            margin: -15px 0 0 -400px; } }
+      @media (min-width: 992px) and (max-width: 1199px) {
+        .main-content .weekly .image-slider .cropped {
+          height: 367px; }
+          .main-content .weekly .image-slider .cropped img {
+            max-width: 2400px;
+            margin: -115px 0 0 -500px; } }
+      @media (min-width: 480px) and (max-width: 991px) {
+        .main-content .weekly .image-slider .cropped {
+          height: 300px; }
+          .main-content .weekly .image-slider .cropped img {
+            max-width: 2400px;
+            margin: -182px 0 0 -520px; } }
+      @media (max-width: 479px) {
+        .main-content .weekly .image-slider .cropped {
+          height: 250px; }
+          .main-content .weekly .image-slider .cropped img {
+            max-width: 2400px;
+            margin: -232px 0 0 -600px; } }
     .main-content .weekly .image-slider .thumbnail {
       margin: 0 20% 0 20%; }
   .main-content .reviewers h2 {
@@ -2078,12 +2099,26 @@ h3 {
     content: '';
     display: block;
     clear: both; }
-  .right-content .reviews-right-box .review {
-    text-align: center;
-    font-weight: bold; }
-    .right-content .reviews-right-box .review > img {
-      margin: 3px 0;
-      width: 80%; }
+  @media (min-width: 768px) {
+    .right-content .reviews-right-box .reviews-right .review-right {
+      text-align: center;
+      font-weight: bold; }
+      .right-content .reviews-right-box .reviews-right .review-right > img {
+        margin: 3px 0;
+        width: 80%; } }
+  @media (max-width: 767px) {
+    .right-content .reviews-right-box .reviews-right .review-right {
+      width: 50%;
+      float: left;
+      text-align: center;
+      font-weight: bold; }
+      .right-content .reviews-right-box .reviews-right .review-right > img {
+        margin: 3px 0;
+        width: 98%; }
+    .right-content .reviews-right-box .reviews-right:after {
+      content: '';
+      display: block;
+      clear: both; } }
 
 .footer {
   color: #999;
