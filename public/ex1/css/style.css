@@ -348,6 +348,7 @@ h3 {
       margin: 0 auto;
       max-width: 450px; }
       .main-content .weekly .image-slider .thumbnail .thumbnail-inner img {
+        cursor: pointer;
         width: 100%; }
       .main-content .weekly .image-slider .thumbnail .thumbnail-inner .rectangle {
         cursor: -moz-grab;

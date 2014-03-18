@@ -89,6 +89,13 @@ $(document).ready(function () {
       var marginLeftRatio = bigImage.marginLeftRatio();
       rectangle.css("margin-left", -marginLeftRatio * thumbnailImg.width() + "px")
     }
+
+    this.calculateMovementToNewCenter = function (newCenter) {
+      var w = rectangle.width();
+      var l = parseFloat(rectangle.css("margin-left"));
+      var currentRectangleCenter = l + w / 2;
+      return newCenter - currentRectangleCenter;
+    }
   }
 
   function PanoramaWidget() {
@@ -172,6 +179,20 @@ $(document).ready(function () {
         firstDrag = false;
       });
 
+      thumbnailImg.on("click", function (event) {
+        widget.stopAutoDrag();
+
+        var newCenter = thumbnail.calculateMovementToNewCenter(event.offsetX);
+        newCenter *= -bigImage.fullImageWidth() / thumbnailImg.width();
+
+        bigImage.initDrag(0, 0);
+        bigImage.drag(newCenter, 0);
+
+        thumbnail.updateRectangle(bigImage);
+
+        return false;
+      });
+
       $(window).on("resize", function () {
         thumbnail.updateRectangle(bigImage);
       });
@@ -182,6 +203,7 @@ $(document).ready(function () {
     }
 
     this.autoDrag = function (time) {
+      if (!autodragEnabled) return;
       var max = bigImage.maxMarginLeft();
       var speed = 0.1;
       var t = (time * speed) % (max * 2);
