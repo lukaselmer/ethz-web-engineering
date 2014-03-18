@@ -22,15 +22,15 @@ $(document).ready(function () {
       lastPageY = pageY;
     }
 
-    this.drag = function (event) {
-      var diffX = lastPageX - event.pageX;
-      var diffY = lastPageY - event.pageY;
+    this.drag = function (pageX, pageY) {
+      var diffX = lastPageX - pageX;
+      var diffY = lastPageY - pageY;
 
       this.moveX(diffX);
       this.moveY(diffY);
 
-      lastPageX = event.pageX;
-      lastPageY = event.pageY;
+      lastPageX = pageX;
+      lastPageY = pageY;
     }
 
     this.moveX = function (delta) {
@@ -60,15 +60,19 @@ $(document).ready(function () {
     }
 
     this.maxMarginLeft = function () {
-      return croppedImg.width() - cropped.width();
+      return this.fullImageWidth() - cropped.width();
     }
 
     this.widthVisibleRatio = function () {
-      return cropped.width() / croppedImg.width();
+      return cropped.width() / this.fullImageWidth();
     }
 
     this.marginLeftRatio = function () {
-      return parseFloat(croppedImg.css("margin-left")) / croppedImg.width(); //this.maxMarginLeft();
+      return parseFloat(croppedImg.css("margin-left")) / croppedImg.width();
+    }
+
+    this.fullImageWidth = function () {
+      return croppedImg.width();
     }
   }
 
@@ -89,15 +93,20 @@ $(document).ready(function () {
 
   function PanoramaWidget() {
     var widget = this;
-    var slider = $(".image-slider");
-    var cropped = slider.children(".cropped");
-
     var firstDrag = true;
-
     var autodragEnabled = true;
 
+    var body = $("body");
+
+    var slider = $(".image-slider");
+
+    var cropped = slider.children(".cropped");
     var bigImage = new BigImage(cropped);
-    var thumbnail = new Thumbnail(slider.children(".thumbnail"));
+
+    var thumbnailDiv = slider.children(".thumbnail");
+    var thumbnailImg = thumbnailDiv.children("img");
+    var rectangle = thumbnailDiv.children(".rectangle");
+    var thumbnail = new Thumbnail(thumbnailDiv);
 
     this.registerEvents = function () {
       var manualDragBig = function (event) {
@@ -105,7 +114,19 @@ $(document).ready(function () {
           bigImage.initDrag(event.pageX, event.pageY);
           firstDrag = false;
         }
-        bigImage.drag(event);
+        bigImage.drag(event.pageX, event.pageY);
+        thumbnail.updateRectangle(bigImage);
+      }
+
+      var manualDragThumbnail = function (event) {
+        var pageX = event.pageX;
+        pageX *= -bigImage.fullImageWidth() / thumbnailImg.width();
+        // fullImageWidth
+        if (firstDrag) {
+          bigImage.initDrag(pageX, 0);
+          firstDrag = false;
+        }
+        bigImage.drag(pageX, 0);
         thumbnail.updateRectangle(bigImage);
       }
 
@@ -114,14 +135,30 @@ $(document).ready(function () {
       });
 
       cropped.on("mousedown", function () {
-        cropped.on("mousemove", manualDragBig);
+        $("body").on("mousemove", manualDragBig);
+        cropped.addClass("grabbing");
         firstDrag = true;
         widget.stopAutoDrag();
         return false;
       });
 
-      cropped.on("mouseup mouseout", function () {
-        cropped.off("mousemove", manualDragBig);
+      body.on("mouseup", function () { // mouseout
+        body.off("mousemove", manualDragBig);
+        cropped.removeClass("grabbing");
+        firstDrag = false;
+      });
+
+      rectangle.on("mousedown", function () {
+        body.on("mousemove", manualDragThumbnail);
+        rectangle.addClass("grabbing");
+        firstDrag = true;
+        widget.stopAutoDrag();
+        return false;
+      });
+
+      body.on("mouseup", function () { // mouseout
+        body.off("mousemove", manualDragThumbnail);
+        rectangle.removeClass("grabbing");
         firstDrag = false;
       });
     }

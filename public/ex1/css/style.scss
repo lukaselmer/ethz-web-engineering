@@ -312,8 +312,17 @@ h3 {
     .image-slider {
       margin: 0 0 5px 0;
       .cropped {
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+        cursor: grab;
         overflow: hidden;
         border-radius: $borderRadius;
+
+        &.grabbing {
+          cursor: -moz-grabbing;
+          cursor: -webkit-grabbing;
+          cursor: grabbing;
+        }
 
         img {
           border-radius: 0;
@@ -368,10 +377,19 @@ h3 {
         text-align: center;
         margin: 0 20%;
         .rectangle {
+          cursor: -moz-grab;
+          cursor: -webkit-grab;
+          cursor: grab;
           background: rgba(255, 202, 0, 0.30);
           position: absolute;
           border-radius: $borderRadius;
           box-shadow: 0px 0px 2px 3px #000;
+
+          &.grabbing {
+            cursor: -moz-grabbing;
+            cursor: -webkit-grabbing;
+            cursor: grabbing;
+          }
         }
         img {
           width: 100%;

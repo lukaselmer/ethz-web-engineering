@@ -308,8 +308,15 @@ h3 {
   .main-content .weekly .image-slider {
     margin: 0 0 5px 0; }
     .main-content .weekly .image-slider .cropped {
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+      cursor: grab;
       overflow: hidden;
       border-radius: 10px; }
+      .main-content .weekly .image-slider .cropped.grabbing {
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+        cursor: grabbing; }
       .main-content .weekly .image-slider .cropped img {
         border-radius: 0;
         width: auto; }
@@ -341,10 +348,17 @@ h3 {
       text-align: center;
       margin: 0 20%; }
       .main-content .weekly .image-slider .thumbnail .rectangle {
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+        cursor: grab;
         background: rgba(255, 202, 0, 0.3);
         position: absolute;
         border-radius: 10px;
         box-shadow: 0px 0px 2px 3px #000; }
+        .main-content .weekly .image-slider .thumbnail .rectangle.grabbing {
+          cursor: -moz-grabbing;
+          cursor: -webkit-grabbing;
+          cursor: grabbing; }
       .main-content .weekly .image-slider .thumbnail img {
         width: 100%; }
   .main-content .reviewers h2 {
