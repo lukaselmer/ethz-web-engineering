@@ -4,7 +4,8 @@ $(document).ready(function () {
   function PanoramaWidget() {
     var widget = this;
     var slider = $(".image-slider");
-    var img = slider.children(".cropped").children("img");
+    var cropped = slider.children(".cropped");
+    var img = cropped.children("img");
     var lastPageX = 0, lastPageY = 0, firstDrag = true;
 
     this.drag = function (event) {
@@ -25,22 +26,25 @@ $(document).ready(function () {
     }
 
     this.moveX = function (delta) {
-      this.move("margin-left", delta);
+      var max = cropped.width() - img.width();
+      this.move("margin-left", delta, max);
     }
 
     this.moveY = function (delta) {
-      this.move("margin-top", delta);
+      var max = cropped.height() - img.height();
+      this.move("margin-top", delta, max);
     }
 
-    this.move = function (direction, delta) {
+    this.move = function (direction, delta, max) {
       var mt = parseInt(img.css(direction));
       var val = mt - delta;
       if (val > 0) val = 0;
+      if (val < max) val = max;
       img.css(direction, val + "px");
     }
 
     this.registerEvents = function () {
-      var drag = function(event){
+      var drag = function (event) {
         widget.drag(event);
       }
 
