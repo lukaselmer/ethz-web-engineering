@@ -15,6 +15,10 @@ $(document).ready(function () {
     var widget = this;
     var slider = $(".image-slider");
     var cropped = slider.children(".cropped");
+    var thumbnail = slider.children(".thumbnail");
+    var thumbnailImg = thumbnail.children("img");
+    var rectangle = thumbnail.children(".rectangle");
+
     var img = cropped.children("img");
     var lastPageX = 0, lastPageY = 0, firstDrag = true;
     var autodragEnabled = true, autoMoveRight = true;
@@ -94,12 +98,12 @@ $(document).ready(function () {
 
     this.autoDrag = function (time) {
       var max = this.maxWidth();
-      var speed = 0.8;
-      var t = time % (max * 2);
+      var speed = 0.1;
+      var t = (time * speed) % (max * 2);
       if (t > max) t = 2 * max - t;
-      var newPosition = speed * Math.abs(t);
+      var newPosition = Math.abs(t);
       this.moveTo("margin-left", newPosition, max);
-      //this.moveTo("margin-left", autoMoveRight ? parseInt(1*time) : -1*time, max);
+      this.updateRectangle();
     }
 
     this.initAutoDrag = function () {
@@ -109,6 +113,11 @@ $(document).ready(function () {
       }
 
       requestAnimationFrame(drag);
+    }
+
+    this.updateRectangle = function(){
+      rectangle.css("height", parseInt(thumbnailImg.height()) + "px");
+      rectangle.css("width", thumbnailImg.height() + "px");
     }
   }
 

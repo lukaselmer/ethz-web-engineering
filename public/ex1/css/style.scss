@@ -311,9 +311,6 @@ h3 {
   .weekly {
     .image-slider {
       margin: 0 0 5px 0;
-      img {
-        width: 100%;
-      }
       .cropped {
         overflow: hidden;
         border-radius: $borderRadius;
@@ -366,10 +363,21 @@ h3 {
             margin: -232px 0 0 -600px;
           }
         }
-
       }
       .thumbnail {
-        margin: 0 20% 0 20%;
+        text-align: center;
+        margin: 0 20%;
+        .rectangle {
+          background: rgba(0, 0, 0, 0.3);
+          position: absolute;
+          margin: -3px 0 0 0;
+          border: 3px #000 solid;
+          border-radius: $borderRadius;
+        }
+        img {
+          width: 100%;
+          //max-width: 500px;
+        }
       }
     }
   }
