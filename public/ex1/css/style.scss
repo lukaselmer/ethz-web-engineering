@@ -368,11 +368,10 @@ h3 {
         text-align: center;
         margin: 0 20%;
         .rectangle {
-          background: rgba(0, 0, 0, 0.3);
+          background: rgba(255, 202, 0, 0.30);
           position: absolute;
-          margin: -3px 0 0 0;
-          border: 3px #000 solid;
           border-radius: $borderRadius;
+          box-shadow: 0px 0px 2px 3px #000;
         }
         img {
           width: 100%;
