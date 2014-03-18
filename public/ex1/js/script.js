@@ -17,8 +17,8 @@ $(document).ready(function () {
       var diffX = lastPageX - event.pageX;
       var diffY = lastPageY - event.pageY;
 
-      widget.moveX(diffX);
-      widget.moveY(diffY);
+      this.moveX(diffX);
+      this.moveY(diffY);
 
       lastPageX = event.pageX;
       lastPageY = event.pageY;
@@ -40,23 +40,27 @@ $(document).ready(function () {
     }
 
     this.registerEvents = function () {
+      var drag = function(event){
+        widget.drag(event);
+      }
+
       slider.on("dragstart", function () {
         return false;
       });
 
       slider.on("mousedown", function () {
-        slider.on("mousemove", widget.drag);
+        slider.on("mousemove", drag);
         firstDrag = true;
         return false;
       });
 
       slider.on("mouseup", function () {
-        slider.off("mousemove", widget.drag);
+        slider.off("mousemove", drag);
         firstDrag = false;
       });
 
       slider.on("mouseout", function () {
-        slider.off("mousemove", widget.drag);
+        slider.off("mousemove", drag);
         firstDrag = false;
       });
     }
