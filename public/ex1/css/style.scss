@@ -314,8 +314,30 @@ h3 {
       .controls {
         position: absolute;
         background: rgba(255, 255, 255, 0.5);
-        padding: 7px 10px;
         border-radius: $borderRadius 0 $borderRadius 0;
+
+        a {
+          font-weight: bolder;
+          font-size: 0.8em;
+          display: block;
+          float: left;
+          padding: 7px 10px;
+          &:nth-child(1) {
+            border-radius: $borderRadius 0 0 0;
+          }
+          &:nth-child(4) {
+            border-radius: 0 0 $borderRadius 0;
+          }
+          &:hover, &:active {
+            background: rgba(255, 255, 255, 0.8);
+          }
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          clear: both;
+        }
       }
       .cropped {
         cursor: -moz-grab;

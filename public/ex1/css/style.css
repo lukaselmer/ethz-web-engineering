@@ -310,8 +310,23 @@ h3 {
     .main-content .weekly .image-slider .controls {
       position: absolute;
       background: rgba(255, 255, 255, 0.5);
-      padding: 7px 10px;
       border-radius: 10px 0 10px 0; }
+      .main-content .weekly .image-slider .controls a {
+        font-weight: bolder;
+        font-size: 0.8em;
+        display: block;
+        float: left;
+        padding: 7px 10px; }
+        .main-content .weekly .image-slider .controls a:nth-child(1) {
+          border-radius: 10px 0 0 0; }
+        .main-content .weekly .image-slider .controls a:nth-child(4) {
+          border-radius: 0 0 10px 0; }
+        .main-content .weekly .image-slider .controls a:hover, .main-content .weekly .image-slider .controls a:active {
+          background: rgba(255, 255, 255, 0.8); }
+      .main-content .weekly .image-slider .controls:after {
+        content: '';
+        display: block;
+        clear: both; }
     .main-content .weekly .image-slider .cropped {
       cursor: -moz-grab;
       cursor: -webkit-grab;
