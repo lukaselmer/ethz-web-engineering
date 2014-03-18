@@ -311,6 +311,12 @@ h3 {
   .weekly {
     .image-slider {
       margin: 0 0 5px 0;
+      .controls {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 7px 10px;
+        border-radius: $borderRadius 0 $borderRadius 0;
+      }
       .cropped {
         cursor: -moz-grab;
         cursor: -webkit-grab;
@@ -378,10 +384,6 @@ h3 {
           margin: 0 auto; // centers the box
           max-width: 450px;
 
-          img {
-            cursor: pointer;
-            width: 100%;
-          }
           .rectangle {
             cursor: -moz-grab;
             cursor: -webkit-grab;
@@ -396,6 +398,10 @@ h3 {
               cursor: -webkit-grabbing;
               cursor: grabbing;
             }
+          }
+          img {
+            cursor: pointer;
+            width: 100%;
           }
         }
       }

@@ -101,7 +101,8 @@ $(document).ready(function () {
   function PanoramaWidget() {
     var widget = this;
     var firstDrag = true;
-    var autodragEnabled = true;
+    var autoDragEnabled = true;
+    var autoDragSpeed = 0.1;
 
     var body = $("body");
 
@@ -199,14 +200,13 @@ $(document).ready(function () {
     }
 
     this.stopAutoDrag = function () {
-      autodragEnabled = false;
+      autoDragEnabled = false;
     }
 
     this.autoDrag = function (time) {
-      if (!autodragEnabled) return;
+      if (!autoDragEnabled) return;
       var max = bigImage.maxMarginLeft();
-      var speed = 0.1;
-      var t = (time * speed) % (max * 2);
+      var t = (time * autoDragSpeed) % (max * 2);
       if (t > max) t = 2 * max - t;
       var newPosition = Math.abs(t);
       bigImage.moveTo("margin-left", newPosition, max);
@@ -215,17 +215,42 @@ $(document).ready(function () {
 
     this.initAutoDrag = function () {
       var drag = function (time) {
-        if (autodragEnabled) requestAnimationFrame(drag);
+        if (autoDragEnabled) requestAnimationFrame(drag);
         widget.autoDrag(time);
       }
 
       requestAnimationFrame(drag);
     }
 
+    this.registerControls = function () {
+      $("a[href=#play]").click(function(e){
+        e.preventDefault();
+        if(autoDragEnabled) return;
+        autoDragEnabled = true;
+        widget.initAutoDrag();
+      });
+
+      $("a[href=#stop]").click(function(e){
+        e.preventDefault();
+        widget.stopAutoDrag();
+      });
+
+      $("a[href=#faster]").click(function(e){
+        e.preventDefault();
+        autoDragSpeed *= 1.5;
+      });
+
+      $("a[href=#slower]").click(function(e){
+        e.preventDefault();
+        autoDragSpeed /= 1.5;
+      });
+    }
+
   }
 
   var w = new PanoramaWidget();
   w.registerEvents();
+  w.registerControls();
   w.initAutoDrag();
 
 });
