@@ -37,12 +37,12 @@ $(document).ready(function () {
     }
 
     this.moveX = function (delta) {
-      var max = img.width() - cropped.width();
+      var max = this.maxWidth();
       this.move("margin-left", delta, max);
     }
 
     this.moveY = function (delta) {
-      var max = img.height() - cropped.height();
+      var max = this.maxHeight();
       this.move("margin-top", delta, max);
     }
 
@@ -67,20 +67,15 @@ $(document).ready(function () {
         return false;
       });
 
-      slider.on("mousedown", function () {
-        slider.on("mousemove", manualDragBig);
+      cropped.on("mousedown", function () {
+        cropped.on("mousemove", manualDragBig);
         firstDrag = true;
         widget.stopAutoDrag();
         return false;
       });
 
-      slider.on("mouseup", function () {
-        slider.off("mousemove", manualDragBig);
-        firstDrag = false;
-      });
-
-      slider.on("mouseout", function () {
-        slider.off("mousemove", manualDragBig);
+      cropped.on("mouseup mouseout", function () {
+        cropped.off("mousemove", manualDragBig);
         firstDrag = false;
       });
     }
@@ -89,8 +84,16 @@ $(document).ready(function () {
       autodragEnabled = false;
     }
 
+    this.maxHeight = function () {
+      return img.height() - cropped.height();
+    }
+
+    this.maxWidth = function () {
+      return img.width() - cropped.width();
+    }
+
     this.autoDrag = function (time) {
-      var max = img.width() - cropped.width();
+      var max = this.maxWidth();
       var speed = 0.8;
       var t = time % (max * 2);
       if (t > max) t = 2 * max - t;
