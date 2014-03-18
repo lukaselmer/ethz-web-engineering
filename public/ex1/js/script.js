@@ -109,8 +109,16 @@ $(document).ready(function () {
     var rectangle = thumbnailDiv.children(".rectangle");
     var thumbnail = new Thumbnail(thumbnailDiv);
 
+    this.convertTouchEvent = function (event) {
+      if (event.originalEvent && event.originalEvent.touches && event.originalEvent.touches[0])
+        return event.originalEvent.touches[0];
+      return event;
+    }
+
     this.registerEvents = function () {
-      var manualDragBig = function (event) {
+      var manualDragBig = function (_event) {
+        var event = widget.convertTouchEvent(_event);
+
         if (firstDrag) {
           bigImage.initDrag(event.pageX, event.pageY);
           firstDrag = false;
@@ -119,7 +127,8 @@ $(document).ready(function () {
         thumbnail.updateRectangle(bigImage);
       }
 
-      var manualDragThumbnail = function (event) {
+      var manualDragThumbnail = function (_event) {
+        var event = widget.convertTouchEvent(_event);
         var pageX = event.pageX;
         pageX *= -bigImage.fullImageWidth() / thumbnailImg.width();
         // fullImageWidth
