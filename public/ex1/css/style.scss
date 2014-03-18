@@ -374,26 +374,28 @@ h3 {
         }
       }
       .thumbnail {
-        text-align: center;
-        margin: 0 20%;
-        .rectangle {
-          cursor: -moz-grab;
-          cursor: -webkit-grab;
-          cursor: grab;
-          background: rgba(255, 202, 0, 0.30);
-          position: absolute;
-          border-radius: $borderRadius;
-          box-shadow: 0px 0px 2px 3px #000;
+        .thumbnail-inner {
+          margin: 0 auto; // centers the box
+          max-width: 450px;
 
-          &.grabbing {
-            cursor: -moz-grabbing;
-            cursor: -webkit-grabbing;
-            cursor: grabbing;
+          img {
+            width: 100%;
           }
-        }
-        img {
-          width: 100%;
-          //max-width: 500px;
+          .rectangle {
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+            cursor: grab;
+            background: rgba(255, 202, 0, 0.30);
+            position: absolute;
+            border-radius: $borderRadius;
+            box-shadow: 0px 0px 2px 3px #000;
+
+            &.grabbing {
+              cursor: -moz-grabbing;
+              cursor: -webkit-grabbing;
+              cursor: grabbing;
+            }
+          }
         }
       }
     }

@@ -87,7 +87,7 @@ $(document).ready(function () {
       rectangle.css("width", (thumbnailImg.width() * widthRatio) + "px");
 
       var marginLeftRatio = bigImage.marginLeftRatio();
-      rectangle.css("margin-left", -marginLeftRatio * thumbnail.width() + "px")
+      rectangle.css("margin-left", -marginLeftRatio * thumbnailImg.width() + "px")
     }
   }
 
@@ -103,7 +103,8 @@ $(document).ready(function () {
     var cropped = slider.children(".cropped");
     var bigImage = new BigImage(cropped);
 
-    var thumbnailDiv = slider.children(".thumbnail");
+    var thumbnailOuterDiv = slider.children(".thumbnail");
+    var thumbnailDiv = thumbnailOuterDiv.children(".thumbnail-inner");
     var thumbnailImg = thumbnailDiv.children("img");
     var rectangle = thumbnailDiv.children(".rectangle");
     var thumbnail = new Thumbnail(thumbnailDiv);
@@ -160,6 +161,10 @@ $(document).ready(function () {
         body.off("mousemove", manualDragThumbnail);
         rectangle.removeClass("grabbing");
         firstDrag = false;
+      });
+
+      $(window).on("resize", function () {
+        thumbnail.updateRectangle(bigImage);
       });
     }
 
