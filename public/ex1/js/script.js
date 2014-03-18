@@ -135,30 +135,30 @@ $(document).ready(function () {
         return false;
       });
 
-      cropped.on("mousedown", function () {
-        $("body").on("mousemove", manualDragBig);
+      cropped.on("mousedown touchstart", function () {
+        $("body").on("mousemove touchmove", manualDragBig);
         cropped.addClass("grabbing");
         firstDrag = true;
         widget.stopAutoDrag();
         return false;
       });
 
-      body.on("mouseup", function () { // mouseout
-        body.off("mousemove", manualDragBig);
+      body.on("mouseup touchend", function () { // mouseout
+        body.off("mousemove touchmove", manualDragBig);
         cropped.removeClass("grabbing");
         firstDrag = false;
       });
 
-      rectangle.on("mousedown", function () {
-        body.on("mousemove", manualDragThumbnail);
+      rectangle.on("mousedown touchstart", function () {
+        body.on("mousemove touchmove", manualDragThumbnail);
         rectangle.addClass("grabbing");
         firstDrag = true;
         widget.stopAutoDrag();
         return false;
       });
 
-      body.on("mouseup", function () { // mouseout
-        body.off("mousemove", manualDragThumbnail);
+      body.on("mouseup touchend", function () { // mouseout
+        body.off("mousemove touchmove", manualDragThumbnail);
         rectangle.removeClass("grabbing");
         firstDrag = false;
       });
