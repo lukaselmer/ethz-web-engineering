@@ -17,7 +17,7 @@ $(document).ready(function () {
     var cropped = slider.children(".cropped");
     var img = cropped.children("img");
     var lastPageX = 0, lastPageY = 0, firstDrag = true;
-    var autodrag = true, autoMoveRight = true;
+    var autodragEnabled = true, autoMoveRight = true;
 
     this.drag = function (event) {
       if (firstDrag) {
@@ -59,7 +59,7 @@ $(document).ready(function () {
     }
 
     this.registerEvents = function () {
-      var drag = function (event) {
+      var manualDragBig = function (event) {
         widget.drag(event);
       }
 
@@ -68,29 +68,28 @@ $(document).ready(function () {
       });
 
       slider.on("mousedown", function () {
-        slider.on("mousemove", drag);
+        slider.on("mousemove", manualDragBig);
         firstDrag = true;
-        autodrag = false;
+        widget.stopAutoDrag();
         return false;
       });
 
       slider.on("mouseup", function () {
-        slider.off("mousemove", drag);
+        slider.off("mousemove", manualDragBig);
         firstDrag = false;
       });
 
       slider.on("mouseout", function () {
-        slider.off("mousemove", drag);
+        slider.off("mousemove", manualDragBig);
         firstDrag = false;
       });
     }
 
     this.stopAutoDrag = function () {
-      autodrag = false;
+      autodragEnabled = false;
     }
 
     this.autoDrag = function (time) {
-      if (!autodrag) return;
       var max = img.width() - cropped.width();
       var speed = 0.8;
       var t = time % (max * 2);
@@ -102,7 +101,7 @@ $(document).ready(function () {
 
     this.initAutoDrag = function () {
       var drag = function (time) {
-        if (autodrag) requestAnimationFrame(drag);
+        if (autodragEnabled) requestAnimationFrame(drag);
         widget.autoDrag(time);
       }
 
