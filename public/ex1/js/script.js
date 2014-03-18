@@ -1,5 +1,15 @@
 "use strict";
 
+/*window.requestAnimationFrame = (function () {
+ return  window.requestAnimationFrame ||
+ window.webkitRequestAnimationFrame ||
+ window.mozRequestAnimationFrame ||
+ function (callback) {
+ window.setTimeout(callback, 1000 / 60);
+ };
+ })();*/
+
+
 $(document).ready(function () {
   function PanoramaWidget() {
     var widget = this;
@@ -7,6 +17,7 @@ $(document).ready(function () {
     var cropped = slider.children(".cropped");
     var img = cropped.children("img");
     var lastPageX = 0, lastPageY = 0, firstDrag = true;
+    var autodrag = true, autoMoveRight = true;
 
     this.drag = function (event) {
       if (firstDrag) {
@@ -26,21 +37,25 @@ $(document).ready(function () {
     }
 
     this.moveX = function (delta) {
-      var max = cropped.width() - img.width();
+      var max = img.width() - cropped.width();
       this.move("margin-left", delta, max);
     }
 
     this.moveY = function (delta) {
-      var max = cropped.height() - img.height();
+      var max = img.height() - cropped.height();
       this.move("margin-top", delta, max);
     }
 
     this.move = function (direction, delta, max) {
-      var mt = parseInt(img.css(direction));
-      var val = mt - delta;
-      if (val > 0) val = 0;
-      if (val < max) val = max;
-      img.css(direction, val + "px");
+      var mt = -parseInt(img.css(direction));
+      var position = mt + delta;
+      this.moveTo(direction, position, max);
+    }
+
+    this.moveTo = function (direction, position, max) {
+      if (position < 0) position = 0;
+      if (position > max) position = max;
+      img.css(direction, -position + "px");
     }
 
     this.registerEvents = function () {
@@ -55,6 +70,7 @@ $(document).ready(function () {
       slider.on("mousedown", function () {
         slider.on("mousemove", drag);
         firstDrag = true;
+        autodrag = false;
         return false;
       });
 
@@ -68,9 +84,34 @@ $(document).ready(function () {
         firstDrag = false;
       });
     }
+
+    this.stopAutoDrag = function () {
+      autodrag = false;
+    }
+
+    this.autoDrag = function (time) {
+      if (!autodrag) return;
+      var max = img.width() - cropped.width();
+      var speed = 0.8;
+      var t = time % (max * 2);
+      if (t > max) t = 2 * max - t;
+      var newPosition = speed * Math.abs(t);
+      this.moveTo("margin-left", newPosition, max);
+      //this.moveTo("margin-left", autoMoveRight ? parseInt(1*time) : -1*time, max);
+    }
+
+    this.initAutoDrag = function () {
+      var drag = function (time) {
+        if (autodrag) requestAnimationFrame(drag);
+        widget.autoDrag(time);
+      }
+
+      requestAnimationFrame(drag);
+    }
   }
 
   var w = new PanoramaWidget();
   w.registerEvents();
+  w.initAutoDrag();
 
 });
