@@ -98,11 +98,56 @@ $(document).ready(function () {
     }
   }
 
+  function AutoDrag(_bigImage, _thumbnail) {
+    var _this = this;
+
+    var bigImage = _bigImage;
+    var thumbnail = _thumbnail;
+
+    var autoDragEnabled = true;
+    var autoDragSpeed = 0.1;
+
+    this.stopAutoDrag = function () {
+      autoDragEnabled = false;
+    }
+
+    this.autoDrag = function (time) {
+      if (!autoDragEnabled) return;
+      var max = bigImage.maxMarginLeft();
+      var t = (time * autoDragSpeed) % (max * 2);
+      if (t > max) t = 2 * max - t;
+      var newPosition = Math.abs(t);
+      bigImage.moveTo("margin-left", newPosition, max);
+      thumbnail.updateRectangle(bigImage);
+    }
+
+    this.initAutoDrag = function () {
+      var drag = function (time) {
+        if (autoDragEnabled) requestAnimationFrame(drag);
+        _this.autoDrag(time);
+      }
+
+      requestAnimationFrame(drag);
+    }
+
+    this.play = function () {
+      if (autoDragEnabled) return;
+      autoDragEnabled = true;
+      this.initAutoDrag();
+    }
+
+    this.increaseSpeed = function () {
+      autoDragSpeed *= 1.5;
+    }
+
+    this.decreaseSpeed = function () {
+      autoDragSpeed /= 1.5;
+    }
+  }
+
   function PanoramaWidget() {
     var widget = this;
     var firstDrag = true;
-    var autoDragEnabled = true;
-    var autoDragSpeed = 0.1;
 
     var body = $("body");
 
@@ -116,6 +161,8 @@ $(document).ready(function () {
     var thumbnailImg = thumbnailDiv.children("img");
     var rectangle = thumbnailDiv.children(".rectangle");
     var thumbnail = new Thumbnail(thumbnailDiv);
+
+    var autoDrag = new AutoDrag(bigImage, thumbnail);
 
     this.convertTouchEvent = function (event) {
       if (event.originalEvent && event.originalEvent.touches && event.originalEvent.touches[0])
@@ -157,7 +204,7 @@ $(document).ready(function () {
         $("body").on("mousemove touchmove", manualDragBig);
         cropped.addClass("grabbing");
         firstDrag = true;
-        widget.stopAutoDrag();
+        autoDrag.stopAutoDrag();
       });
 
       // could also use mouseout, then we wouldn't need to register the body events
@@ -173,7 +220,7 @@ $(document).ready(function () {
         body.on("mousemove touchmove", manualDragThumbnail);
         rectangle.addClass("grabbing");
         firstDrag = true;
-        widget.stopAutoDrag();
+        autoDrag.stopAutoDrag();
       });
 
       // could also use mouseout, then we wouldn't need to register the body events
@@ -187,7 +234,7 @@ $(document).ready(function () {
       thumbnailImg.on("click", function (e) {
         e.preventDefault();
 
-        widget.stopAutoDrag();
+        autoDrag.stopAutoDrag();
 
         var newCenter = thumbnail.calculateMovementToNewCenter(e.offsetX);
         newCenter *= -bigImage.fullImageWidth() / thumbnailImg.width();
@@ -203,51 +250,30 @@ $(document).ready(function () {
       });
     }
 
-    this.stopAutoDrag = function () {
-      autoDragEnabled = false;
-    }
+    this.registerControls = function () {
+      $("a[href=#play]").click(function (e) {
+        e.preventDefault();
+        autoDrag.play();
+      });
 
-    this.autoDrag = function (time) {
-      if (!autoDragEnabled) return;
-      var max = bigImage.maxMarginLeft();
-      var t = (time * autoDragSpeed) % (max * 2);
-      if (t > max) t = 2 * max - t;
-      var newPosition = Math.abs(t);
-      bigImage.moveTo("margin-left", newPosition, max);
-      thumbnail.updateRectangle(bigImage);
+      $("a[href=#stop]").click(function (e) {
+        e.preventDefault();
+        autoDrag.stopAutoDrag();
+      });
+
+      $("a[href=#faster]").click(function (e) {
+        e.preventDefault();
+        autoDrag.increaseSpeed();
+      });
+
+      $("a[href=#slower]").click(function (e) {
+        e.preventDefault();
+        autoDrag.decreaseSpeed();
+      });
     }
 
     this.initAutoDrag = function () {
-      var drag = function (time) {
-        if (autoDragEnabled) requestAnimationFrame(drag);
-        widget.autoDrag(time);
-      }
-
-      requestAnimationFrame(drag);
-    }
-
-    this.registerControls = function () {
-      $("a[href=#play]").click(function(e){
-        e.preventDefault();
-        if(autoDragEnabled) return;
-        autoDragEnabled = true;
-        widget.initAutoDrag();
-      });
-
-      $("a[href=#stop]").click(function(e){
-        e.preventDefault();
-        widget.stopAutoDrag();
-      });
-
-      $("a[href=#faster]").click(function(e){
-        e.preventDefault();
-        autoDragSpeed *= 1.5;
-      });
-
-      $("a[href=#slower]").click(function(e){
-        e.preventDefault();
-        autoDragSpeed /= 1.5;
-      });
+      autoDrag.initAutoDrag();
     }
 
   }
