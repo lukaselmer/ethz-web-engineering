@@ -31,8 +31,27 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery.min.js"><' + '/script>');</script>
     <script src="js/script.js"></script>
+
+    <!--
+    Simulate multi touch for development (if you have a multitouch trackpad (such as a Apple MacBook or MagicPad)
+    =============================================================================================================
+    https://github.com/borismus/MagicTouch
+    http://www.html5rocks.com/en/mobile/touch/
+     -->
+    <script src="js/magictouch.js"></script>
 </head>
 <body>
+
+<!--
+Simulate multi touch for development (if you have a multitouch trackpad (such as a Apple MacBook or MagicPad)
+=============================================================================================================
+https://github.com/borismus/MagicTouch
+http://www.html5rocks.com/en/mobile/touch/
+ -->
+<object id="tuio" type="application/x-tuio" style="width: 0px; height: 0px;">
+    Touch input plugin failed to load!
+</object>
+
 <div class="xxs-container">
     <div>Hey there! Would you like to use the local App from the App store? It provides several advantages, check it out!</div>
     <a href="https://play.google.com/store/apps/details?id=com.hcom.android">Android</a>
