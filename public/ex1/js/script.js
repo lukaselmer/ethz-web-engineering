@@ -11,6 +11,128 @@
 
 
 $(document).ready(function () {
+  function Vector(_x, _y) {
+    var x = _x, y = _y;
+
+    this.getX = function () {
+      return x;
+    }
+    this.getY = function () {
+      return y;
+    }
+    this.multiply = function (v) {
+      return new Vector(x * v.getX(), y * v.getY());
+    }
+    this.multiplyScalar = function (scalar) {
+      return new Vector(x * scalar, y * scalar);
+    }
+    this.plus = function (v) {
+      return new Vector(x + v.getX(), y + v.getY());
+    }
+    this.minus = function (v) {
+      return new Vector(x - v.getX(), y - v.getY());
+    }
+    this.abs = function () {
+      return new Vector(Math.abs(x), Math.abs(y));
+    }
+  }
+
+  function ImageAcceleration(_acceleration, _bigImage) {
+    var _this = this,
+      acceleration = _acceleration,
+      bigImage = _bigImage,
+      i = 0,
+      observing = true;
+
+    this.setObserving = function (value) {
+      observing = (value === true);
+    }
+
+    this.tick = function () {
+      if (observing) {
+        var v = new Vector(bigImage.marginLeft(), bigImage.marginTop());
+        acceleration.append(v, i++);
+        acceleration.onMove(null);
+      } else {
+        acceleration.onMove(this.move);
+      }
+    }
+
+    this.move = function (vector) {
+      bigImage.moveToX(vector.getX());
+      bigImage.moveToY(vector.getY());
+    }
+
+    this.start = function () {
+      acceleration.startAcceleration();
+    }
+
+    setInterval(function () {
+      _this.tick()
+    }, 30);
+  }
+
+  function Acceleration(_friction, _epsilon) {
+    var _this = this;
+    var friction = _friction, epsilon = _epsilon;
+    var originPoint = new Vector(0, 0), originTime = 0;
+    var latestPoint = new Vector(0, 0), latestTime = 0;
+    var callback = null;
+    var vectorCacheSize = 100;
+    var vectorCache = [originPoint, latestPoint];
+
+    this.onMove = function (f) {
+      callback = f;
+    }
+
+    this.startAcceleration = function () {
+      setTimeout(function () {
+        _this.tick()
+      }, 10);
+    }
+
+    this.tick = function () {
+      var v = this.accelerationVector();
+      originPoint = latestPoint;
+      originTime = 0;
+      latestTime = 1;
+      latestPoint = originPoint.plus(v.multiplyScalar(friction));
+
+      if (callback) callback(latestPoint);
+
+      if (this.calculateSpeed() > epsilon) {
+        this.startAcceleration();
+      }
+    }
+
+    this.append = function (point, time) {
+      if(!point) return;
+
+      console.log(vectorCache.length)
+
+      vectorCache.push([point, time]);
+      if(vectorCache.length > vectorCacheSize) vectorCache.shift();
+
+      var origin = vectorCache[0];
+      originPoint = origin[0];
+      originTime = origin[0];
+
+      latestPoint = point;
+      latestTime = time;
+    }
+    this.calculateSpeed = function () {
+      var v = originPoint.minus(latestPoint);
+      var distance = Math.sqrt(v.getX() * v.getX() + v.getY() * v.getY());
+      var time = latestTime - originTime;
+      if(time == 0) return 0;
+      return distance / time;
+    }
+    this.accelerationVector = function () {
+      var time = latestTime - originTime;
+      return latestPoint.minus(originPoint).multiplyScalar(time);
+    }
+  }
+
   function BigImage(_cropped) {
     var cropped = _cropped,
       croppedImg = cropped.children("img"),
@@ -49,6 +171,16 @@ $(document).ready(function () {
       this.moveTo(direction, position, max);
     }
 
+    this.moveToX = function (pos) {
+      var max = this.maxMarginLeft();
+      this.moveTo("margin-left", pos, max);
+    }
+
+    this.moveToY = function (position) {
+      var max = this.maxMarginTop();
+      this.moveTo("margin-top", position, max);
+    }
+
     this.moveTo = function (direction, position, max) {
       if (position < 0) position = 0;
       if (position > max) position = max;
@@ -77,6 +209,10 @@ $(document).ready(function () {
 
     this.marginLeft = function () {
       return parseFloat(croppedImg.css("margin-left"))
+    }
+
+    this.marginTop = function () {
+      return parseFloat(croppedImg.css("margin-top"))
     }
   }
 
@@ -203,6 +339,9 @@ $(document).ready(function () {
 
     var autoDrag = new AutoDrag(bigImage, thumbnail);
 
+    var acceleration = new Acceleration(0.8, 0.01);
+    var imageAcceleration = new ImageAcceleration(acceleration, bigImage);
+
     this.isTouchEvent = function (event) {
       return event.originalEvent && event.originalEvent.touches && event.originalEvent.touches.length > 0;
     }
@@ -214,11 +353,6 @@ $(document).ready(function () {
     }
     this.convertSingleTouchEvent = function (event) {
       return event.originalEvent.touches[0];
-      /*if (event.originalEvent && event.originalEvent.touches && event.originalEvent.touches[0]) {
-       var touches = event.originalEvent.touches;
-       return touches.length == 1 ? touches[0] : null;
-       }
-       return event;*/
     }
 
     this.registerEvents = function () {
@@ -274,6 +408,7 @@ $(document).ready(function () {
       });
 
       cropped.on("mousedown touchstart", function (e) {
+        imageAcceleration.setObserving(true);
         $("body").on("mousemove touchmove", manualDragBig);
         cropped.addClass("grabbing");
         firstDrag = true;
@@ -282,12 +417,15 @@ $(document).ready(function () {
 
       // could also use mouseout, then we wouldn't need to register the body events
       body.on("mouseup touchend", function (e) {
+        imageAcceleration.setObserving(false);
         body.off("mousemove touchmove", manualDragBig);
         cropped.removeClass("grabbing");
         firstDrag = false;
+        imageAcceleration.start();
       });
 
       rectangle.on("mousedown touchstart", function (e) {
+        imageAcceleration.setObserving(true);
         body.on("mousemove touchmove", manualDragThumbnail);
         rectangle.addClass("grabbing");
         firstDrag = true;
@@ -296,9 +434,11 @@ $(document).ready(function () {
 
       // could also use mouseout, then we wouldn't need to register the body events
       body.on("mouseup touchend", function (e) {
+        imageAcceleration.setObserving(false);
         body.off("mousemove touchmove", manualDragThumbnail);
         rectangle.removeClass("grabbing");
         firstDrag = false;
+        imageAcceleration.start();
       });
 
       var clickFunction = function (offsetX) {
@@ -321,13 +461,10 @@ $(document).ready(function () {
       });
 
       thumbnailImg.on("touchstart ", function (_event) {
-        var event = _event;
-
-        if (!widget.isSingleTouchEvent(event)) return;
-
+        if (!widget.isSingleTouchEvent(_event)) return;
         _event.preventDefault();
-        event = widget.convertSingleTouchEvent(event);
 
+        var event = widget.convertSingleTouchEvent(_event);
         var offsetX = event.pageX - event.target.x;
         clickFunction(offsetX);
       });
