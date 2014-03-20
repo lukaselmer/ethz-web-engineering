@@ -117,13 +117,13 @@ $(document).ready(function () {
       autoDragEnabled = false;
     }
 
-    this.setManuallyDragged = function(){
+    this.setManuallyDragged = function () {
       manualDrag = true;
     }
 
     this.initAutoDrag = function () {
       this.setStartParameters();
-      if(manualDrag){
+      if (manualDrag) {
         manualDrag = false;
         marginOffset = -bigImage.marginLeft();
       }
@@ -203,28 +203,59 @@ $(document).ready(function () {
 
     var autoDrag = new AutoDrag(bigImage, thumbnail);
 
-    this.convertTouchEvent = function (event) {
-      if (event.originalEvent && event.originalEvent.touches && event.originalEvent.touches[0])
-        return event.originalEvent.touches[0];
-      return event;
+    this.isTouchEvent = function (event) {
+      return event.originalEvent && event.originalEvent.touches && event.originalEvent.touches.length > 0;
+    }
+    this.isSingleTouchEvent = function (event) {
+      return event.originalEvent && event.originalEvent.touches && event.originalEvent.touches.length == 1;
+    }
+    this.isDoubleTouchEvent = function (event) {
+      return event.originalEvent && event.originalEvent.touches && event.originalEvent.touches.length == 2;
+    }
+    this.convertSingleTouchEvent = function (event) {
+      return event.originalEvent.touches[0];
+      /*if (event.originalEvent && event.originalEvent.touches && event.originalEvent.touches[0]) {
+       var touches = event.originalEvent.touches;
+       return touches.length == 1 ? touches[0] : null;
+       }
+       return event;*/
     }
 
     this.registerEvents = function () {
-      var manualDragBig = function (_event) {
-        var event = widget.convertTouchEvent(_event);
+      var manualDragBig = function (event) {
+        var dragFunction = function (e) {
+          if (firstDrag) {
+            bigImage.initDrag(e.pageX, e.pageY);
+            firstDrag = false;
+          }
+          bigImage.drag(e.pageX, e.pageY);
+          thumbnail.updateRectangle(bigImage);
 
-        if (firstDrag) {
-          bigImage.initDrag(event.pageX, event.pageY);
-          firstDrag = false;
+          autoDrag.setManuallyDragged();
+        };
+
+        var zoomFunction = function (event) {
+
+        };
+
+        if (!widget.isTouchEvent(event)) dragFunction(event);
+        else if (widget.isSingleTouchEvent(event)) {
+          dragFunction(widget.convertSingleTouchEvent(event));
         }
-        bigImage.drag(event.pageX, event.pageY);
-        thumbnail.updateRectangle(bigImage);
-        
-        autoDrag.setManuallyDragged();
-      }
+        else if (widget.isDoubleTouchEvent(event)) zoomFunction(event);
+        else return;
+
+        event.preventDefault();
+      };
 
       var manualDragThumbnail = function (_event) {
-        var event = widget.convertTouchEvent(_event);
+        var event = _event;
+
+        if (widget.isSingleTouchEvent(event)) event = widget.convertSingleTouchEvent(event);
+        else if (widget.isTouchEvent(event)) return;
+
+        _event.preventDefault();
+
         var pageX = event.pageX;
         pageX *= -bigImage.fullImageWidth() / thumbnailImg.width();
         // fullImageWidth
@@ -243,7 +274,6 @@ $(document).ready(function () {
       });
 
       cropped.on("mousedown touchstart", function (e) {
-        e.preventDefault();
         $("body").on("mousemove touchmove", manualDragBig);
         cropped.addClass("grabbing");
         firstDrag = true;
@@ -252,14 +282,12 @@ $(document).ready(function () {
 
       // could also use mouseout, then we wouldn't need to register the body events
       body.on("mouseup touchend", function (e) {
-        e.preventDefault();
         body.off("mousemove touchmove", manualDragBig);
         cropped.removeClass("grabbing");
         firstDrag = false;
       });
 
       rectangle.on("mousedown touchstart", function (e) {
-        e.preventDefault();
         body.on("mousemove touchmove", manualDragThumbnail);
         rectangle.addClass("grabbing");
         firstDrag = true;
@@ -268,18 +296,15 @@ $(document).ready(function () {
 
       // could also use mouseout, then we wouldn't need to register the body events
       body.on("mouseup touchend", function (e) {
-        e.preventDefault();
         body.off("mousemove touchmove", manualDragThumbnail);
         rectangle.removeClass("grabbing");
         firstDrag = false;
       });
 
-      thumbnailImg.on("click", function (e) {
-        e.preventDefault();
-
+      var clickFunction = function(offsetX){
         autoDrag.stopAutoDrag();
 
-        var newCenter = thumbnail.calculateMovementToNewCenter(e.offsetX);
+        var newCenter = thumbnail.calculateMovementToNewCenter(offsetX);
         newCenter *= -bigImage.fullImageWidth() / thumbnailImg.width();
 
         bigImage.initDrag(0, 0);
@@ -288,6 +313,23 @@ $(document).ready(function () {
         thumbnail.updateRectangle(bigImage);
 
         autoDrag.setManuallyDragged();
+      }
+
+      thumbnailImg.on("click ", function (event) {
+        event.preventDefault();
+        clickFunction(event.offsetX);
+      });
+
+      thumbnailImg.on("touchstart ", function (_event) {
+        var event = _event;
+
+        if (!widget.isSingleTouchEvent(event)) return;
+
+        _event.preventDefault();
+        event = widget.convertSingleTouchEvent(event);
+
+        var offsetX = event.pageX - event.target.x;
+        clickFunction(offsetX);
       });
 
       $(window).on("resize", function () {
@@ -296,22 +338,22 @@ $(document).ready(function () {
     }
 
     this.registerControls = function () {
-      $("a[href=#play]").click(function (e) {
+      $("a[href=#play]").on("click touchstart", function (e) {
         e.preventDefault();
         autoDrag.play();
       });
 
-      $("a[href=#stop]").click(function (e) {
+      $("a[href=#stop]").on("click touchstart", function (e) {
         e.preventDefault();
         autoDrag.stopAutoDrag();
       });
 
-      $("a[href=#faster]").click(function (e) {
+      $("a[href=#faster]").on("click touchstart", function (e) {
         e.preventDefault();
         autoDrag.increaseSpeed();
       });
 
-      $("a[href=#slower]").click(function (e) {
+      $("a[href=#slower]").on("click touchstart", function (e) {
         e.preventDefault();
         autoDrag.decreaseSpeed();
       });
@@ -328,4 +370,5 @@ $(document).ready(function () {
   w.registerControls();
   w.initAutoDrag();
 
-});
+})
+;
