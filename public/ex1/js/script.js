@@ -301,7 +301,7 @@ $(document).ready(function () {
         firstDrag = false;
       });
 
-      var clickFunction = function(offsetX){
+      var clickFunction = function (offsetX) {
         autoDrag.stopAutoDrag();
 
         var newCenter = thumbnail.calculateMovementToNewCenter(offsetX);
