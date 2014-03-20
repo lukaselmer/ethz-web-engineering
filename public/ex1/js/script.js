@@ -68,11 +68,15 @@ $(document).ready(function () {
     }
 
     this.marginLeftRatio = function () {
-      return parseFloat(croppedImg.css("margin-left")) / croppedImg.width();
+      return this.marginLeft() / croppedImg.width();
     }
 
     this.fullImageWidth = function () {
       return croppedImg.width();
+    }
+
+    this.marginLeft = function () {
+      return parseFloat(croppedImg.css("margin-left"))
     }
   }
 
@@ -107,27 +111,60 @@ $(document).ready(function () {
     var autoDragEnabled = true;
     var autoDragSpeed = 0.1;
 
+    var marginOffset = 0, timeOffset = 0, lastTime = 0, manualDrag = true;
+
     this.stopAutoDrag = function () {
       autoDragEnabled = false;
     }
 
-    this.autoDrag = function (time) {
-      if (!autoDragEnabled) return;
-      var max = bigImage.maxMarginLeft();
-      var t = (time * autoDragSpeed) % (max * 2);
-      if (t > max) t = 2 * max - t;
-      var newPosition = Math.abs(t);
-      bigImage.moveTo("margin-left", newPosition, max);
-      thumbnail.updateRectangle(bigImage);
+    this.setManuallyDragged = function(){
+      manualDrag = true;
     }
 
     this.initAutoDrag = function () {
+      this.setStartParameters();
+      if(manualDrag){
+        manualDrag = false;
+        marginOffset = -bigImage.marginLeft();
+      }
+
       var drag = function (time) {
         if (autoDragEnabled) requestAnimationFrame(drag);
         _this.autoDrag(time);
       }
 
       requestAnimationFrame(drag);
+    }
+
+    this.setStartParameters = function () {
+      var max = bigImage.maxMarginLeft();
+      marginOffset = _this.calcT(lastTime, max);
+      timeOffset = lastTime;
+
+      var setParams = function (time) {
+        timeOffset = time;
+      }
+      requestAnimationFrame(setParams);
+    }
+
+    this.calcT = function (time, max) {
+      lastTime = time;
+      return (((time - timeOffset) * autoDragSpeed) + marginOffset) % (max * 2);
+    }
+
+    this.calculateMarginLeft = function (time, max) {
+      var t = this.calcT(time, max);
+      if (t > max) t = 2 * max - t;
+      var newPosition = Math.abs(t);
+      return newPosition;
+    }
+
+    this.autoDrag = function (time) {
+      if (!autoDragEnabled) return;
+      var max = bigImage.maxMarginLeft();
+      var newPosition = this.calculateMarginLeft(time, max);
+      bigImage.moveTo("margin-left", newPosition, max);
+      thumbnail.updateRectangle(bigImage);
     }
 
     this.play = function () {
@@ -137,10 +174,12 @@ $(document).ready(function () {
     }
 
     this.increaseSpeed = function () {
+      this.setStartParameters();
       autoDragSpeed *= 1.5;
     }
 
     this.decreaseSpeed = function () {
+      this.setStartParameters();
       autoDragSpeed /= 1.5;
     }
   }
@@ -180,6 +219,8 @@ $(document).ready(function () {
         }
         bigImage.drag(event.pageX, event.pageY);
         thumbnail.updateRectangle(bigImage);
+        
+        autoDrag.setManuallyDragged();
       }
 
       var manualDragThumbnail = function (_event) {
@@ -193,6 +234,8 @@ $(document).ready(function () {
         }
         bigImage.drag(pageX, 0);
         thumbnail.updateRectangle(bigImage);
+
+        autoDrag.setManuallyDragged();
       }
 
       slider.on("dragstart", function (e) {
@@ -243,6 +286,8 @@ $(document).ready(function () {
         bigImage.drag(newCenter, 0);
 
         thumbnail.updateRectangle(bigImage);
+
+        autoDrag.setManuallyDragged();
       });
 
       $(window).on("resize", function () {
