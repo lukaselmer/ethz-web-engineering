@@ -298,7 +298,7 @@ $(document).ready(function () {
       };
 
       var tick = function () {
-        if (calcSpeed(acceleration) > epsilon && !recording) setTimeout(tick, 5);
+        if (calcSpeed(acceleration) > epsilon && !recording) requestAnimationFrame(tick);
         updateLocation(acceleration);
         acceleration = acceleration.multiplyScalar(friction);
       };
