@@ -148,50 +148,54 @@ $(document).ready(function () {
         thumbnail.updateRectangle(bigImage);
       }
 
-      slider.on("dragstart", function () {
-        return false;
+      slider.on("dragstart", function (e) {
+        e.preventDefault();
       });
 
-      cropped.on("mousedown touchstart", function () {
+      cropped.on("mousedown touchstart", function (e) {
+        e.preventDefault();
         $("body").on("mousemove touchmove", manualDragBig);
         cropped.addClass("grabbing");
         firstDrag = true;
         widget.stopAutoDrag();
-        return false;
       });
 
-      body.on("mouseup touchend", function () { // mouseout
+      // could also use mouseout, then we wouldn't need to register the body events
+      body.on("mouseup touchend", function (e) {
+        e.preventDefault();
         body.off("mousemove touchmove", manualDragBig);
         cropped.removeClass("grabbing");
         firstDrag = false;
       });
 
-      rectangle.on("mousedown touchstart", function () {
+      rectangle.on("mousedown touchstart", function (e) {
+        e.preventDefault();
         body.on("mousemove touchmove", manualDragThumbnail);
         rectangle.addClass("grabbing");
         firstDrag = true;
         widget.stopAutoDrag();
-        return false;
       });
 
-      body.on("mouseup touchend", function () { // mouseout
+      // could also use mouseout, then we wouldn't need to register the body events
+      body.on("mouseup touchend", function (e) {
+        e.preventDefault();
         body.off("mousemove touchmove", manualDragThumbnail);
         rectangle.removeClass("grabbing");
         firstDrag = false;
       });
 
-      thumbnailImg.on("click", function (event) {
+      thumbnailImg.on("click", function (e) {
+        e.preventDefault();
+
         widget.stopAutoDrag();
 
-        var newCenter = thumbnail.calculateMovementToNewCenter(event.offsetX);
+        var newCenter = thumbnail.calculateMovementToNewCenter(e.offsetX);
         newCenter *= -bigImage.fullImageWidth() / thumbnailImg.width();
 
         bigImage.initDrag(0, 0);
         bigImage.drag(newCenter, 0);
 
         thumbnail.updateRectangle(bigImage);
-
-        return false;
       });
 
       $(window).on("resize", function () {
