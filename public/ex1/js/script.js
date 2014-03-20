@@ -278,6 +278,8 @@ $(document).ready(function () {
     };
 
     this.play = function () {
+      if (recording === false) return;
+
       recording = false;
 
       var epsilon = .03;
@@ -401,39 +403,36 @@ $(document).ready(function () {
         e.preventDefault();
       });
 
-      cropped.on("mousedown touchstart", function (e) {
-        $("body").on("mousemove touchmove", manualDragBig);
-        cropped.addClass("grabbing");
-        firstDrag = true;
-        autoDrag.stopAutoDrag();
-        accelerator.startRecording();
-      });
+      var registerDrawEvent = function (element, f, startEvent, moveEvent) {
+        element.on(startEvent, function () {
+          body.on(moveEvent, f);
+          element.addClass("grabbing");
+          firstDrag = true;
+          autoDrag.stopAutoDrag();
+          accelerator.startRecording();
+        });
+      }
 
-      // could also use mouseout, then we wouldn't need to register the body events
-      body.on("mouseup touchend", function (e) {
-        if (!cropped.hasClass("grabbing")) return;
-        body.off("mousemove touchmove", manualDragBig);
-        cropped.removeClass("grabbing");
-        firstDrag = false;
-        accelerator.play();
-      });
+      var registerStopDrag = function (element, f, startEvent, moveEvent) {
+        // could also use mouseout, then we wouldn't need to register the body events
+        body.on(startEvent, function () {
+          //if (!element.hasClass("grabbing")) return;
+          body.off(moveEvent, f);
+          element.removeClass("grabbing");
+          firstDrag = false;
+          accelerator.play();
+        });
+      }
 
-      rectangle.on("mousedown touchstart", function (e) {
-        body.on("mousemove touchmove", manualDragThumbnail);
-        rectangle.addClass("grabbing");
-        firstDrag = true;
-        autoDrag.stopAutoDrag();
-        accelerator.startRecording();
-      });
+      registerDrawEvent(cropped, manualDragBig, "mousedown", "mousemove");
+      registerDrawEvent(cropped, manualDragBig, "touchstart", "touchmove");
+      registerDrawEvent(rectangle, manualDragThumbnail, "mousedown", "mousemove");
+      registerDrawEvent(rectangle, manualDragThumbnail, "touchstart", "touchmove");
 
-      // could also use mouseout, then we wouldn't need to register the body events
-      body.on("mouseup touchend", function (e) {
-        if (!rectangle.hasClass("grabbing")) return;
-        body.off("mousemove touchmove", manualDragThumbnail);
-        rectangle.removeClass("grabbing");
-        firstDrag = false;
-        accelerator.play();
-      });
+      registerStopDrag(cropped, manualDragBig, "mouseup", "mousemove");
+      registerStopDrag(cropped, manualDragBig, "touchend", "touchmove");
+      registerStopDrag(rectangle, manualDragThumbnail, "mouseup", "mousemove");
+      registerStopDrag(rectangle, manualDragThumbnail, "touchend", "touchmove");
 
       var clickFunction = function (offsetX) {
         autoDrag.stopAutoDrag();
