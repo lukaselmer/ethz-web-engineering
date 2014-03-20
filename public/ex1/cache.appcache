@@ -1,5 +1,10 @@
 CACHE MANIFEST
 # v = 1.0.0
+FALLBACK :
+    / /index.html
+index.html
+reviewers.html
+weekly.html
 js/jquery.js
 js/jquery.min.js
 js/jquery.min.map
