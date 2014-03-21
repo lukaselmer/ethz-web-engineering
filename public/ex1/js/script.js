@@ -305,8 +305,6 @@ $(document).ready(function () {
         acceleration = acceleration.multiplyScalar(friction);
       };
       tick();
-
-      // TODO: play / accelerate image
     };
 
     this.clear();
