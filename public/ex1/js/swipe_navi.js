@@ -3,6 +3,7 @@
 $(document).ready(function () {
 
   function Navigation() {
+    var _this = this;
     var navigated = false;
     var navElements = $("header nav ul li");
 
@@ -28,19 +29,19 @@ $(document).ready(function () {
       navigated = true;
       this.findElement(-1).click();
     };
+
+    this.registerHandlers = function () {
+      $.touch.preventDefault = false;
+      $('header').touchable({
+        gesture: function (e, touchHistory) {
+          if (touchHistory.match({ finger: 0, deltaX: '<-100', time: '1..100' }))  _this.previous();
+          else if (touchHistory.match({ finger: 0, deltaX: '>100', time: '1..100' })) _this.next();
+        }
+      });
+    };
   }
 
   var navigation = new Navigation();
-
-  $.touch.preventDefault = false;
-  $('header').touchable({
-    gesture: function (e, touchHistory) {
-      if (touchHistory.match({ finger: 0, deltaX: '<-100', time: '1..100' })) {
-        navigation.previous();
-      } else if (touchHistory.match({ finger: 0, deltaX: '>100', time: '1..100' })) {
-        navigation.next();
-      }
-    }
-  });
+  navigation.registerHandlers();
 
 });
