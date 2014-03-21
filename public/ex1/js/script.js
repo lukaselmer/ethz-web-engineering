@@ -308,6 +308,8 @@ $(document).ready(function () {
 
       // TODO: play / accelerate image
     };
+
+    this.clear();
   }
 
   function PanoramaWidget() {
