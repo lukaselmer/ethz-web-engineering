@@ -21,12 +21,14 @@ $(document).ready(function () {
     this.next = function () {
       if (navigated) return;
       navigated = true;
+      this.deregisterHandlers();
       this.findElement(1).click();
     };
 
     this.previous = function () {
       if (navigated) return;
       navigated = true;
+      this.deregisterHandlers();
       this.findElement(-1).click();
     };
 
@@ -39,6 +41,10 @@ $(document).ready(function () {
         }
       });
     };
+
+    this.deregisterHandlers = function () {
+      // TODO: implement this
+    }
   }
 
   var navigation = new Navigation();
