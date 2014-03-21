@@ -5,6 +5,13 @@ FALLBACK :
 index.html
 reviewers.html
 weekly.html
+js/jqmt/jquery.multitouch-draggable.js
+js/jqmt/jquery.multitouch-gestures.js
+js/jqmt/jquery.multitouch-orientable.js
+js/jqmt/jquery.multitouch-resizable.js
+js/jqmt/jquery.multitouch-rotatable.js
+js/jqmt/jquery.multitouch-scalable.js
+js/jqmt/jquery.multitouch.js
 js/jquery.js
 js/jquery.min.js
 js/jquery.min.map
