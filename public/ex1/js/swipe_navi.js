@@ -43,7 +43,7 @@ $(document).ready(function () {
     };
 
     this.deregisterHandlers = function () {
-      // TODO: implement this
+      // TODO: implement this. $touch documentation??
     }
   }
 
