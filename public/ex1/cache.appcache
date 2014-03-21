@@ -8,7 +8,9 @@ weekly.html
 js/jquery.js
 js/jquery.min.js
 js/jquery.min.map
+js/magictouch.js
 js/script.js
+js/swipe_navi.js
 css/reset.css
 css/reset.scss
 css/style.css

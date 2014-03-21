@@ -503,5 +503,4 @@ $(document).ready(function () {
   w.registerControls();
   w.initAutoDrag();
 
-})
-;
+});
