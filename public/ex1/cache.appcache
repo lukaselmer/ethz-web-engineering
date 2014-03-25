@@ -5,6 +5,7 @@ CACHE:
 index.html
 reviewers.html
 weekly.html
+//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js
 js/jqmt/jquery.multitouch-draggable.js
 js/jqmt/jquery.multitouch-gestures.js
 js/jqmt/jquery.multitouch-orientable.js
@@ -40,4 +41,4 @@ images/sydney-harbour-panorama1bl-thumbnail.jpg
 images/sydney-harbour-panorama1bl.jpg
 
 FALLBACK :
-    / /index.html
+/ index.html
