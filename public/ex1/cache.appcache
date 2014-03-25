@@ -1,11 +1,11 @@
 CACHE MANIFEST
 # v = 1.0.0
-FALLBACK :
-    / /index.html
+
+CACHE:
 index.html
 reviewers.html
 weekly.html
-ex1/js/jqmt/jquery.multitouch-draggable.js
+js/jqmt/jquery.multitouch-draggable.js
 js/jqmt/jquery.multitouch-gestures.js
 js/jqmt/jquery.multitouch-orientable.js
 js/jqmt/jquery.multitouch-resizable.js
@@ -50,3 +50,6 @@ images/social_media/twitter-icon.png
 images/social_media/twt-icon.gif
 images/sydney-harbour-panorama1bl-thumbnail.jpg
 images/sydney-harbour-panorama1bl.jpg
+
+FALLBACK :
+    / /index.html
