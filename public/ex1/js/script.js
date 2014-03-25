@@ -243,7 +243,7 @@ $(document).ready(function () {
     }
 
     this.playRandom = function () {
-      randomEnabled = true;
+      randomEnabled = !randomEnabled;
     }
   }
 
