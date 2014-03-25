@@ -611,9 +611,23 @@ $(document).ready(function () {
 
   }
 
+  function DiceAnimator() {
+    var animate = function () {
+      var dice = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+      var die = dice[Math.floor(Math.random() * dice.length)];
+      $("a[href=#random]").html(die);
+    }
+
+    animate();
+    setInterval(animate, 500);
+  }
+
   var w = new PanoramaWidget();
   w.registerEvents();
   w.registerControls();
   w.initAutoDrag();
+
+  new DiceAnimator();
+
 
 });
