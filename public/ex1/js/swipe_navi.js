@@ -22,14 +22,14 @@ $(document).ready(function () {
       if (navigated) return;
       navigated = true;
       this.deregisterHandlers();
-      this.findElement(1).click();
+      this.findElement(-1).click();
     };
 
     this.previous = function () {
       if (navigated) return;
       navigated = true;
       this.deregisterHandlers();
-      this.findElement(-1).click();
+      this.findElement(1).click();
     };
 
     this.registerHandlers = function () {
