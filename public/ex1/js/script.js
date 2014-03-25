@@ -244,6 +244,11 @@ $(document).ready(function () {
 
     this.playRandom = function () {
       randomEnabled = !randomEnabled;
+      if (randomEnabled) this.play();
+      else {
+        this.setManuallyDragged();
+        this.initAutoDrag();
+      }
     }
   }
 
