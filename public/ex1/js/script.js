@@ -379,16 +379,28 @@ $(document).ready(function () {
       }
 
       var zoomFactor = this.calculateZoomFactor(lastZoomPoint, currentZoomPoint);
+      lastZoomPoint = currentZoomPoint;
 
+      this.zoom(zoomFactor);
+    };
+
+    this.zoomIn = function () {
+      this.zoom(1.1);
+    };
+
+    this.zoomOut = function () {
+      this.zoom(1. / 1.1);
+    };
+
+    this.zoom = function (zoomFactor) {
       totalZoomFactor *= zoomFactor;
 
       var maxZoomFactor = 3., minZoomFactor = 0.9;
 
       if (totalZoomFactor > maxZoomFactor) totalZoomFactor = maxZoomFactor;
       if (totalZoomFactor < minZoomFactor) totalZoomFactor = minZoomFactor;
-      bigImage.setZoomFactor(totalZoomFactor);
 
-      lastZoomPoint = currentZoomPoint;
+      bigImage.setZoomFactor(totalZoomFactor);
       thumbnail.updateRectangle(bigImage);
     };
   }
@@ -579,6 +591,18 @@ $(document).ready(function () {
         zoom.setZoomedIn();
         autoDrag.playRandom();
       });
+
+      $("a[href=#zoomIn]").on("click touchstart", function (e) {
+        e.preventDefault();
+        zoom.zoomIn();
+      });
+
+      $("a[href=#zoomOut]").on("click touchstart", function (e) {
+        e.preventDefault();
+        zoom.zoomOut();
+      });
+
+
     }
 
     this.initAutoDrag = function () {
