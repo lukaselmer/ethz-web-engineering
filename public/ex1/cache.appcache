@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v = 1.0.0
+# v = 1.0.1
 
 CACHE:
 index.html
@@ -12,38 +12,26 @@ js/jqmt/jquery.multitouch-resizable.js
 js/jqmt/jquery.multitouch-rotatable.js
 js/jqmt/jquery.multitouch-scalable.js
 js/jqmt/jquery.multitouch.js
-js/jquery.js
 js/jquery.min.js
 js/jquery.min.map
 js/magictouch.js
 js/script.js
 js/swipe_navi.js
 css/reset.css
-css/reset.scss
 css/style.css
-css/style.scss
 images/panoramazoom.jpg
 images/reviewers/1.png
-images/reviewers/1.psd
 images/reviewers/2.png
-images/reviewers/2.psd
 images/reviewers/3.png
-images/reviewers/3.psd
 images/reviewers/4.png
-images/reviewers/4.psd
 images/reviewers/5.png
-images/reviewers/5.psd
 images/reviewers/6.png
-images/reviewers/6.psd
 images/reviews/1.jpg
 images/reviews/1.png
-images/reviews/1.psd
 images/reviews/2.jpg
 images/reviews/2.png
-images/reviews/2.psd
 images/reviews/3.jpg
 images/reviews/3.png
-images/reviews/3.psd
 images/social_media/facebook-icon.png
 images/social_media/fbk-icon.gif
 images/social_media/twitter-icon.png

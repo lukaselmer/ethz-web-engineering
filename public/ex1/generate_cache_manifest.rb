@@ -11,10 +11,12 @@ File.open('cache.appcache', 'w') do |f|
   
   %w(js css images).each do |folder|
     Dir.glob("#{folder}/**/*.*") do |file|
-      f.puts "#{file}" unless file.ends_with? '.psd'
+      next if file.end_with? *%w(.psd .scss js/jquery.js)
+      f.puts "#{file}"
     end
   end
-  
+
+  f.puts  
   f.puts 'FALLBACK :'
   f.puts '    / /index.html'
 end
