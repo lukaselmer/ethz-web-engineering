@@ -344,6 +344,55 @@ $(document).ready(function () {
     this.clear();
   }
 
+  function Zoom(_bigImage, _thumbnail) {
+    var bigImage = _bigImage, thumbnail = _thumbnail;
+    var lastZoomPoint = null, totalZoomFactor = 1.;
+
+    this.setZoomedIn = function () {
+      bigImage.setZoomFactor(totalZoomFactor * 2.);
+    }
+
+    this.resetLastZoomPoint = function () {
+      lastZoomPoint = null;
+    }
+
+    this.convertZoomVector = function (touches) {
+      return new Vector(touches[0].pageX - touches[1].pageX,
+        touches[0].pageY - touches[1].pageY);
+      //return [new Vector(touches[0].pageX, touches[0].pageY),
+      //  new Vector(touches[1].pageX, touches[1].pageY)];
+    }
+
+    this.calculateZoomFactor = function (v1, v2) {
+      var v1Len = v1.len();
+      var v2Len = v2.len();
+      if (v1Len == 0 || v2Len == 0) return 1;
+      return v2Len / v1Len;
+    }
+
+    this.zoomFunction = function (touches) {
+      var currentZoomPoint = this.convertZoomVector(touches);
+
+      if (lastZoomPoint === null) {
+        lastZoomPoint = currentZoomPoint;
+        return;
+      }
+
+      var zoomFactor = this.calculateZoomFactor(lastZoomPoint, currentZoomPoint);
+
+      totalZoomFactor *= zoomFactor;
+
+      var maxZoomFactor = 3., minZoomFactor = 0.9;
+
+      if (totalZoomFactor > maxZoomFactor) totalZoomFactor = maxZoomFactor;
+      if (totalZoomFactor < minZoomFactor) totalZoomFactor = minZoomFactor;
+      bigImage.setZoomFactor(totalZoomFactor);
+
+      lastZoomPoint = currentZoomPoint;
+      thumbnail.updateRectangle(bigImage);
+    };
+  }
+
   function PanoramaWidget() {
     var widget = this;
     var firstDrag = true;
@@ -361,7 +410,7 @@ $(document).ready(function () {
     var rectangle = thumbnailDiv.children(".rectangle");
     var thumbnail = new Thumbnail(thumbnailDiv);
 
-    var lastZoomPoint = null, totalZoomFactor = 1.;
+    var zoom = new Zoom(bigImage, thumbnail);
 
     var accelerator = new Accelerator(function (x, y) {
       bigImage.moveX(x);
@@ -400,47 +449,12 @@ $(document).ready(function () {
           autoDrag.setManuallyDragged();
         };
 
-        var convertZoomVector = function (touches) {
-          return new Vector(touches[0].pageX - touches[1].pageX,
-            touches[0].pageY - touches[1].pageY);
-          //return [new Vector(touches[0].pageX, touches[0].pageY),
-          //  new Vector(touches[1].pageX, touches[1].pageY)];
-        }
-
-        var calculateZoomFactor = function (v1, v2) {
-          var v1Len = v1.len();
-          var v2Len = v2.len();
-          if (v1Len == 0 || v2Len == 0) return 1;
-          return v2Len / v1Len;
-        }
-
-        var zoomFunction = function (touches) {
-          var currentZoomPoint = convertZoomVector(touches);
-
-          if (lastZoomPoint === null) {
-            lastZoomPoint = currentZoomPoint;
-            return;
-          }
-
-          var zoomFactor = calculateZoomFactor(lastZoomPoint, currentZoomPoint);
-
-          totalZoomFactor *= zoomFactor;
-
-          var maxZoomFactor = 3., minZoomFactor = 0.9;
-
-          if (totalZoomFactor > maxZoomFactor) totalZoomFactor = maxZoomFactor;
-          if (totalZoomFactor < minZoomFactor) totalZoomFactor = minZoomFactor;
-          bigImage.setZoomFactor(totalZoomFactor);
-
-          lastZoomPoint = currentZoomPoint;
-          thumbnail.updateRectangle(bigImage);
-        };
 
         if (!widget.isTouchEvent(event)) dragFunction(event);
         else if (widget.isSingleTouchEvent(event)) {
           dragFunction(widget.convertSingleTouchEvent(event));
         }
-        else if (widget.isDoubleTouchEvent(event)) zoomFunction(event.originalEvent.touches);
+        else if (widget.isDoubleTouchEvent(event)) zoom.zoomFunction(event.originalEvent.touches);
         else return;
 
         event.preventDefault();
@@ -489,7 +503,7 @@ $(document).ready(function () {
           element.removeClass("grabbing");
           firstDrag = false;
           accelerator.play();
-          lastZoomPoint = null;
+          zoom.resetLastZoomPoint();
         });
       }
 
@@ -562,7 +576,7 @@ $(document).ready(function () {
 
       $("a[href=#random]").on("click touchstart", function (e) {
         e.preventDefault();
-        bigImage.setZoomFactor(totalZoomFactor * 2.);
+        zoom.setZoomedIn();
         autoDrag.playRandom();
       });
     }
