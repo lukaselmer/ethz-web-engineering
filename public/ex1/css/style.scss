@@ -326,10 +326,10 @@ section {
           display: block;
           float: left;
           padding: 7px 10px;
-          &:nth-child(1) {
+          &:first-child {
             border-radius: $borderRadius 0 0 0;
           }
-          &:nth-child(4) {
+          &:last-child {
             border-radius: 0 0 $borderRadius 0;
           }
           &:hover, &:active {

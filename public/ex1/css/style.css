@@ -317,9 +317,9 @@ section nav {
         display: block;
         float: left;
         padding: 7px 10px; }
-        .main-content .weekly .image-slider .controls a:nth-child(1) {
+        .main-content .weekly .image-slider .controls a:first-child {
           border-radius: 10px 0 0 0; }
-        .main-content .weekly .image-slider .controls a:nth-child(4) {
+        .main-content .weekly .image-slider .controls a:last-child {
           border-radius: 0 0 10px 0; }
         .main-content .weekly .image-slider .controls a:hover, .main-content .weekly .image-slider .controls a:active {
           background: rgba(255, 255, 255, 0.8); }
