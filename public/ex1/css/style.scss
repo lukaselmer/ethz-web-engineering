@@ -268,7 +268,7 @@ header {
   }
 }
 
-section {
+aside {
   nav {
     margin: 0 10px 0 2px;
     padding: 18px 10px 12px 10px;
@@ -305,7 +305,7 @@ section {
   margin: 0 10px 10px 0;
   padding: 10px 3px;
 
-  > div, a.more-items {
+  > article, a.more-items {
     background: $backgroundColor;
     margin: 10px;
     padding: 10px;
