@@ -1,6 +1,6 @@
 File.open('cache.appcache', 'w') do |f|
   f.puts "CACHE MANIFEST"
-  f.puts "# v = 1.0.1"
+  f.puts "# v = 1.0.2"
   
   f.puts
   
