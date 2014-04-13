@@ -31,3 +31,8 @@ Ex. 2
     * Horizontal and vertical scrolling
     * Scrolling through menu by swiping right / left
     * Zoom
+
+Ex. 3
+-----
+
+See https://github.com/lukaselmer/ethz-web-engineering-wordpress
